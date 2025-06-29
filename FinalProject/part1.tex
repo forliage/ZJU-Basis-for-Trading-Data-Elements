@@ -68,5 +68,56 @@
 
  \begin{itemize}
     \item \textbf{参与者 (Participants)}：一个卖方 (Seller, S)，用女性代词“她” (she) 表示；一个买方 (Buyer, B)，用男性代词“他” (he) 表示。
-    \item \textbf{世界状态 (State of the World)}：
+    \item \textbf{世界状态 (State of the World)}：存在一个未知的世界状态$\omega$，它从一个有限集合$\Omega$中取值。$\omega$代表了对买方决策结果有重要影响的客观事实。例如，在广告场景中，$\omega$可以是用户的真实类型；在另一个“带锁的盒子”的经典比喻中，$\omega$可以是能打开盒子的那把钥匙的编号。
+    \item \textbf{私人信号 (Private Signals)}：
+       \begin{itemize}
+         \item \textbf{卖方信号}：卖方拥有关于$\omega$的私人信息。再基础模型中，我们假设卖方直接知道$\omega$的真实值。
+         \item \textbf{买方信号}：买方对于$\omega$也有自己的私人信息，我们称之为买方的类型 (type) 或信号，用$\theta$表示，它从一个有限集合$\Theta$中取值。例如，$\theta$是用户的网页浏览历史。
+       \end{itemize}
+    \item \textbf{联合先验分布 (Joint Prior Distribution)}：
+       \begin{itemize}
+         \item 世界状态$\omega$和买方状态$\theta$不是孤立的，它们由一个共同知识 (common knowledge) 的联合先验分布$\mu(\omega,\theta)$决定。这个分布$\mu:\Omega \times \Theta \to [0,1]$描述了特定状态$\omega$和特定买方类型$\theta$同时发生的概率。$\mu(\omega,\theta)$可以为零，表示某些组合不可能发生。
+         \item 这个联合分布至关重要，因为它刻画了买卖双方信号之间的相关性。例如，如果$\mu(\omega,\theta)=\mu(\omega)\mu(\theta)$，则双方信号是独立的；否则是相关的。信号的相关性是信息销售机制设计中的一个核心要素。
+       \end{itemize}
+    \item \textbf{行动与效用 (Action and Utility)}：
+       \begin{itemize}
+         \item 买方需要从一个有限的行动集合$A$中选择一个行动$a$。
+         \item 买方的决策会带来一个效用 (utility)，这个效用取决于他的类型$\theta$、真实的世界状态$\omega$以及他锁选择的动作$a$。我们用效用函数$u(\theta,\omega,a)$来表示。这个函数也是共同知识。
+       \end{itemize}
+    \item \textbf{信息不对称总结}：
+       \begin{itemize}
+         \item 卖方知道$\omega$，但不知道$\theta$。
+         \item 买方知道$\theta$，但不知道$\omega$。
+         \item 双方都知道$\mu(\omega,\theta),A$和$u(*,*,*)$。
+       \end{itemize}
+    \item \textbf{信息的价值与买方的剩余 (Value of Information \& Buyer's Surplus)}:
+      \begin{itemize}
+         \item 没有额外信息时：一个类型为$\theta$的买方，根据他的先验知识$\mu$，可以推断出$\omega$的条件概率分布$\mu(\omega | \theta)=\mu(\omega,\theta)/ \mu(\theta)$（其中$\mu(\theta)=\sum\limits_{\omega' \in \Omega} \mu(\omega',\theta)$）。为了最大化自己的期望效用，他会选择行动$a^*$：$$a^*=\arg \max_{a\in A} \mathbb{E}_{\omega \sim \mu(*|\theta)} [u(\theta,\omega,a)] = \arg \max_{a\in A} \sum\limits_{\omega \in \Omega} u(\theta,\omega,a)\mu(\omega|\theta)$$此时，他的期望效用为$\max_{a\in A}\mathbb{E}_{\omega \sim \mu(*|\theta)}[u(\theta,\omega,a)]$。
+         \item 获得卖方信息后：如果卖方向买方揭示了$\omega$的真实值，那么买方就可以在每个$\omega$下都选择最优的行动$a^*(\omega)=\arg \max_{a\in A}u(\theta,\omega,a)$。此时，他在得知$\omega$后的期望效用（期望是对$\omega$的所有可能性求的）为：$$\mathbb{E}_{\omega\sim\mu(*|\theta)}[\max_{a\in A}u(\theta,\omega,a)]$$
+         \item 信息的剩余价值 (Surplus): 对一个类型为$\theta$的买方而言，完全了解$\omega$所带来的期望效用增量，就是这条信息的剩余价值，记为$\xi(\theta)$：$$\xi(\theta)=\mathbb{E}_{\omega\sim\mu(*|\theta)}[\max_{a\in A}u(\theta,\omega,a)] - \max_{a\in A}\mathbb{E}_{\omega\sim\mu(*|\theta)}[u(\theta,\omega,a)]$$ 这个$\xi(\theta)$是买方愿意为获得卖方信息所支付的最高价格。卖方的目标就是通过设计巧妙的机制，尽可能多地将这部分价值以收入的形式“榨取”过来。
+      \end{itemize}
  \end{itemize}
+
+ 现在我们可以正式地陈述卖方的优化问题了。
+
+ 卖方的目标是设计一个销售协议（机制），以最大化其期望总收入。
+
+ 一个机制$M$是一个规则集合，它定义了买卖双方之间的交互方式，包括消息传递和金钱转移。卖方设计的机制必须考虑到买方的理性行为：买方总是会选择能最大化自身净效用的策略。因此，一个可行的机制$M$必须满足以下两个核心约束：
+
+ \begin{enumerate}
+    \item \textbf{激励相容 (Incentive Compatibility, IC)}:机制必须使得买方如实报告其私人类型$\theta$是他的最优策略。也就是说，对他来说，“撒谎”不会带来更高的期望效用。
+    \item \textbf{个体理性 (Individual Rationality, IR)}:机制必须保证买方参与其中所获得的期望净效用（即效用提升减去支付的费用）是非负的。否则，买方宁愿不参与，保留其最初的效用。
+ \end{enumerate}
+
+ 引入预算约束（Chen et al. 的贡献）
+
+ Babaioff等人的原始模型有一个不切实际的方面：最优机制有时需要买卖双方进行极大金额的资金转移（可能远超信息本身的价值），甚至要求卖方向买方支付巨额费用以维持激励相容。这在现实中是不可行的。
+
+ Chen等人的工作通过引入预算约束，使模型更加贴近现实。
+
+ \begin{itemize}
+    \item \textbf{买方预算 (Buyer's Budget)}:每个买方有一个预算$b$，他支付给卖方的总金额不能超过$b$。预算$b$本身也可以是买方的私人信息。
+    \item \textbf{卖方预算 (Seller's Budget)}:卖方也有一个预算$M$，她支付给买方的总金额（回扣或奖励）不能超过$M$。
+ \end{itemize}
+
+ 这个看似简单的补充，极大地改变了问题的结构，并催生了更简洁、更具实践意义的最优机制——即“咨询机制 (Consulting Mechanism)”。在后续的章节中，我们将看到，这种带有预算约束的模型不仅更现实，其解法也更为优雅和高效。

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.12)  29 JUN 2025 13:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.12)  29 JUN 2025 14:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1243,7 +1243,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[2{d:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}])
+[2{d:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
+Overfull \hbox (3.42154pt too wide) in paragraph at lines 74--75
+[]\C70/rm/bx/n/12/53 V \C70/rm/bx/n/12/65 π \C70/rm/bx/n/12/4f · \C70/rm/bx/n/12/53 ˜|\C70/rm/m/n/12/ff ^^Z| \C70/rm/m/n/12/53 V \C70/rm/m/n/12/65 π \C70/rm/m/n/12/62 Â \C70/rm/m/n/12/67 	 \C70/rm/m/n/12/51 s \C70/rm/m/n/12/4e é$\OML/lmm/m/it/12 !$\C70/rm/m/n/12/76 Ñ \C70/rm/m/n/12/79 ¡ \C70/rm/m/n/12/4e ∫ \C70/rm/m/n/12/4f · \C70/rm/m/n/12/60 o|\C70/rm/m/n/12/30 ^^B| \C70/rm/m/n/12/51 ç \C70/rm/m/n/12/57 ˙ \C70/rm/m/n/12/78 @ \C70/rm/m/n/12/6a ! \C70/rm/m/n/12/57 ã \C70/rm/m/n/12/4e -|\C70/rm/m/n/12/ff ^^L| \C70/rm/m/n/12/62 ^^Q \C70/rm/m/n/12/4e Ï \C70/rm/m/n/12/50 G \C70/rm/m/n/12/8b æ \C70/rm/m/n/12/53 V \C70/rm/m/n/12/65 π \C70/rm/m/n/12/76 Ù \C70/rm/m/n/12/63 • \C70/rm/m/n/12/77 Â \C70/rm/m/n/12/90 S$\OML/lmm/m/it/12 !$\C70/rm/m/n/12/76 Ñ
+ []
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1251,7 +1255,27 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[3{d:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}] (./FinalProject.aux)
+[3{d:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{d:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}]
+Overfull \hbox (35.05505pt too wide) in paragraph at lines 80--81
+[]\C70/rm/m/n/12/8f Ÿ \C70/rm/m/n/12/4e * \C70/rm/m/n/12/80 T \C70/rm/m/n/12/54 ^^H \C70/rm/m/n/12/52 ^^F \C70/rm/m/n/12/5e ^^C \C70/rm/m/n/12/81 Û \C70/rm/m/n/12/51 s \C70/rm/m/n/12/91 Õ \C70/rm/m/n/12/89 Å|\C70/rm/m/n/12/ff ^^L| \C70/rm/m/n/12/56 ‡ \C70/rm/m/n/12/4e : \C70/rm/m/n/12/5b É \C70/rm/m/n/12/52 ; \C70/rm/m/n/12/75 ; \C70/rm/m/n/12/4e Ü p \C70/rm/m/n/12/53 V Ã \C70/rm/m/n/12/65 π \C70/rm/m/n/12/4f · \C70/rm/m/n/12/53 ˜ \C70/rm/m/n/12/4e K \C70/rm/m/n/12/95 Ù \C70/rm/m/n/12/76 Ñ ¯ \C70/rm/m/n/12/51 s \C70/rm/m/n/12/60 '|\C70/rm/m/n/12/30 ^^B| \C70/rm/m/n/12/4f ã \C70/rm/m/n/12/59 Ç|\C70/rm/m/n/12/ff ^^L| \C70/rm/m/n/12/59 Ç \C70/rm/m/n/12/67 ú$\OML/lmm/m/it/12 ^^V\OT1/lmr/m/n/12 (-20) (\OML/lmm/m/it/12 !; ^^R\OT1/lmr/m/n/12 (-20) ) =
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[4{d:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{d:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}])
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[5] (./FinalProject.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2022/07/14>
@@ -1260,18 +1284,18 @@ Package rerunfilecheck Info: File `FinalProject.out' has not changed.
 (rerunfilecheck)             Checksum: 0F50BE14901D028AAE30C279C197A401;99.
  ) 
 Here is how much of TeX's memory you used:
- 39195 strings out of 474116
- 756210 string characters out of 5747717
- 1959190 words of memory out of 5000000
- 60544 multiletter control sequences out of 15000+600000
- 652187 words of font info for 241 fonts, out of 8000000 for 9000
+ 39422 strings out of 474116
+ 760243 string characters out of 5747717
+ 1963190 words of memory out of 5000000
+ 60724 multiletter control sequences out of 15000+600000
+ 657240 words of font info for 263 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 88i,18n,92p,1061b,1087s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr12.pfb>
-Output written on FinalProject.pdf (5 pages, 609644 bytes).
+ 88i,19n,92p,1061b,1210s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmex10.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr12.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr8.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on FinalProject.pdf (7 pages, 729349 bytes).
 PDF statistics:
- 564 PDF objects out of 1000 (max. 8388607)
- 363 compressed objects within 4 object streams
- 9 named destinations out of 1000 (max. 500000)
- 35142 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 678 PDF objects out of 1000 (max. 8388607)
+ 442 compressed objects within 5 object streams
+ 13 named destinations out of 1000 (max. 500000)
+ 35154 words of extra memory for PDF output out of 35830 (max. 10000000)
 
