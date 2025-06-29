@@ -1,0 +1,3 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}引言与基本模型}{2}{section.1}%
+\contentsfinish 
