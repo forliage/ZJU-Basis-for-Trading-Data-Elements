@@ -17,4 +17,4 @@
 - lab1:
 - lab2:
 
-- final project(question 8): todo
+- final project(question 8): finish part1
