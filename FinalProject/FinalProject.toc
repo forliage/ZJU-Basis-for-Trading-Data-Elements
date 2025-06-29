@@ -7,7 +7,7 @@
 \contentsline {section}{\numberline {2}问题的形式化 (Formalizing the Problem)}{4}{section.2}%
 \contentsline {subsection}{\numberline {2.1}核心要素：上下文 (Context)$(u,\mu )$}{4}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}买方的目标：最大化效用}{5}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}卖方的目标：最大化收益}{5}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}初步尝试：“密封信封”机制 (The "Sealed Envelope" Mechanism)}{5}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}示例}{5}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.3}卖方的目标：最大化收益}{6}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}初步尝试：“密封信封”机制 (The "Sealed Envelope" Mechanism)}{6}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}示例}{7}{subsection.2.5}%
 \contentsfinish 
