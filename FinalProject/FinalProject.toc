@@ -10,4 +10,9 @@
 \contentsline {subsection}{\numberline {2.3}卖方的目标：最大化收益}{6}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}初步尝试：“密封信封”机制 (The "Sealed Envelope" Mechanism)}{6}{subsection.2.4}%
 \contentsline {subsection}{\numberline {2.5}示例}{7}{subsection.2.5}%
+\contentsline {section}{\numberline {3}通用交互协议与显示原理 (General Protocols and the Revelation Principle)}{11}{section.3}%
+\contentsline {subsection}{\numberline {3.1}描述一切可能：通用交互协议 (Generic Interactive Protocol)}{11}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}机制设计的基石：显示原理 (The Revelation Principle)}{12}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}更进一步：单轮显示机制 (One-Round Revelation)}{13}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}预算约束下的简化}{14}{subsection.3.4}%
 \contentsfinish 
