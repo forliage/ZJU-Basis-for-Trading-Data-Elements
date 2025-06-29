@@ -13,7 +13,7 @@
     #line(length: 100%, stroke: 0.5pt + gray)
   ],
   // 页脚：显示页码
-  footer: align(right)[#counter(page)]
+  //footer: align(right)[#counter(page)]
 )
 
 // 设置中英文基础字体，保证跨平台兼容性
