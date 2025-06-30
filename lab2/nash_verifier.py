@@ -25,10 +25,24 @@ class NashVerifier:
         """
         
         # 请在下方填写你的代码，实现完成后可以将 exception 注释
-        raise NotImplementedError("NashVerifier is not implemented.")
+        # raise NotImplementedError("NashVerifier is not implemented.")
+
+        current_row_payoff = row_strategy @ self.M @ col_strategy
         
-        # 检查行玩家是否最优
+        row_pure_strategy_payoffs = self.M @ col_strategy
         
+        max_row_payoff = np.max(row_pure_strategy_payoffs)
         
-        # 检查列玩家是否最优
+        if not np.isclose(current_row_payoff, max_row_payoff, atol=tol):
+            return False
+
+        current_col_payoff = - (row_strategy @ self.M @ col_strategy)
+
+        col_pure_strategy_payoffs = - (row_strategy @ self.M)
+
+        max_col_payoff = np.max(col_pure_strategy_payoffs)
+
+        if not np.isclose(current_col_payoff, max_col_payoff, atol=tol):
+            return False
+        return True
         

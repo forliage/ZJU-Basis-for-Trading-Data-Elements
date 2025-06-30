@@ -62,8 +62,22 @@ class NashSolver:
         # 注意：在零和博弈中 u_2(i,j) = -u_1(i,j) = -M[i,j]
         #--------------------------------------------
         # 请在下方填写你的代码，实现完成后可以将 exception 注释
-        raise NotImplementedError("Constraint 3 and 4 not implemented.")
-        
+        #raise NotImplementedError("Constraint 3 and 4 not implemented.")
+        for i in row_support:
+            eq_row = np.zeros(n_vars)
+            for j in range(self.n_cols):
+                eq_row[self.n_rows + j] = self.M[i, j]
+            eq_row[n_vars - 2] = -1
+            eq_constraints.append(eq_row)
+            eq_rhs.append(0)
+
+        for j in col_support:
+            eq_row = np.zeros(n_vars)
+            for i in range(self.n_rows):
+                eq_row[i] = -self.M[i, j]
+            eq_row[n_vars - 1] = -1
+            eq_constraints.append(eq_row)
+            eq_rhs.append(0)
         
         #--------------------------------------------
         
@@ -93,8 +107,24 @@ class NashSolver:
         # 7. 列玩家支撑集外策略收益不超过支撑集内：∑_i u_2(i,j)*x_1*(i) ≤ U_2 for j ∉ S_2
         #--------------------------------------------
         # 请在下方填写你的代码，实现完成后可以将 exception 注释
-        raise NotImplementedError("Constraint 6 and 7 not implemented.")
-        
+        # raise NotImplementedError("Constraint 6 and 7 not implemented.")
+        for i in range(self.n_rows):
+            if i not in row_support:
+                ineq_row = np.zeros(n_vars)
+                for j in range(self.n_cols):
+                    ineq_row[self.n_rows + j] = self.M[i, j]
+                ineq_row[n_vars - 2] = -1
+                ineq_constraints.append(ineq_row)
+                ineq_rhs.append(0)
+
+        for j in range(self.n_cols):
+            if j not in col_support:
+                ineq_row = np.zeros(n_vars)
+                for i in range(self.n_rows):
+                    ineq_row[i] = -self.M[i, j]
+                ineq_row[n_vars - 1] = -1
+                ineq_constraints.append(ineq_row)
+                ineq_rhs.append(0)
 
         #--------------------------------------------
 

@@ -58,8 +58,18 @@ class MWUNashSolver:
 
             # ------------------------------------------------------------
             # 请在下方填写你的代码，实现完成后可以将 exception 注释
-            raise NotImplementedError("MWU solver not implemented.")
-            
+            # raise NotImplementedError("MWU solver not implemented.")
+            w_col_sum = np.sum(w_col)
+            if w_col_sum > 1e-8: 
+                y = w_col / w_col_sum
+            else:
+                y = np.ones(m) / m
+            row_payoffs = self.M @ y
+            best_row_action_idx = np.argmax(row_payoffs)
+            x = np.zeros(n)
+            x[best_row_action_idx] = 1.0
+            cost_vector = x @ self.M
+            w_col = w_col * (1 - self.epsilon * cost_vector)
 
             # ------------------------------------------------------------
             

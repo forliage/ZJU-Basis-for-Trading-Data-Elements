@@ -15,6 +15,6 @@
 - hw2:
 
 - lab1:finished
-- lab2:
+- lab2:finished
 
 - final project(question 8): finished
