@@ -1,9 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1751274455.87159 "f:/ZJU-Basis-for-Trading-Data-Elements/FinalProject/FinalProject.tex" "FinalProject.pdf" "FinalProject" 1751274459.8923 0
-  "FinalProject.aux" 1751274458 8203 51321612358eb8c008c073c516f6793d "pdflatex"
-  "FinalProject.out" 1751274459 6183 715140e3b4c33529791371a8675c7475 "pdflatex"
+["pdflatex"] 1751285984.29774 "f:/ZJU-Basis-for-Trading-Data-Elements/FinalProject/FinalProject.tex" "FinalProject.pdf" "FinalProject" 1751285988.62718 0
+  "FinalProject.aux" 1751285987 8643 9edecaf334def97aeafcb0f7c53c9ea4 "pdflatex"
+  "FinalProject.out" 1751285987 6183 715140e3b4c33529791371a8675c7475 "pdflatex"
   "FinalProject.tex" 1751273310 20511 d7b6a071860b8d497402dbc056b9f390 ""
-  "FinalProject.toc" 1751274459 3491 400c81982e66e69fd0010d738a0e357b "pdflatex"
+  "FinalProject.toc" 1751285987 3491 400c81982e66e69fd0010d738a0e357b "pdflatex"
   "c:/Windows/Fonts/msyh.ttc" 1748659216 19704352 1e10e74402e59d54499af795caf0b135 ""
   "c:/Windows/Fonts/simhei.ttf" 1711630440 9755440 983b60188a8e5a7c29c06c674f428b3d ""
   "c:/Windows/Fonts/simsun.ttc" 1748659216 18070492 992f2bdc407dde6953c5ed83ceac9a91 ""
@@ -460,7 +460,7 @@
   "part3.tex" 1751209326 12205 06c1819a35932c4e64a2d6f8266ae575 ""
   "part4.tex" 1751251646 15390 5b6af8495d36b071a3dc8ab3784b4ba6 ""
   "part5.tex" 1751272942 22579 23d2968fed50d7b715a8e432bab9dea6 ""
-  "part6.tex" 1751274450 4918 1c6551134b1eaa70e9238107db53d93c ""
+  "part6.tex" 1751285983 12627 28df5d2f045348df059bb82ec1ec7d86 ""
   (generated)
   "FinalProject.aux"
   "FinalProject.log"

@@ -83,3 +83,147 @@ $$\xi(\theta)-t_{\theta^\prime}$$
 结论: 这个“存款-返还”机制的收益 44.5，严格高于最优直接支付机制的收益 40。这清晰地表明，利用预算作为筛选工具（通过存款要求）可以有效地进行价格歧视，从而提取更多收益。
 
 \subsection{代码实现：用线性规划求解咨询机制}
+
+场景设定：
+\begin{itemize}
+    \item $\Omega=A=\Theta=\{0,1\}$
+    \item $\mu(\omega,\theta):\mu(0,0)=0.4,\mu(0,1)=0.1,\mu(1,0)=0.1,\mu(1,1)=0.4$。$\omega$和$\theta$相关。
+    \item $u(\omega,a)=10$ if $\omega=a$ else 0。
+    \item 公开预算: 假设所有买家预算 $b = 10$。
+    \item 卖方预算: $M = 10$
+    \item 信号相关：所以我们需要用最通用的CM-probR机制的LP形式来求解。
+\end{itemize}
+
+具体的代码参考附件中的program2.py
+
+\begin{lstlisting}[language=Python,style=pythonstyle]
+    import cvxpy as cp
+    import numpy as np
+    
+    class CorrelatedContext:
+        def __init__(self):
+            self.Omega = [0, 1]
+            self.Theta = [0, 1]
+            self.A = [0, 1]
+            self.b = 10.0  
+            self.M = 10.0  
+
+            self.mu_joint = np.array([[0.4, 0.1],  # theta=0: mu(t=0,w=0), mu(t=0,w=1)
+                                      [0.1, 0.4]]) # theta=1: mu(t=1,w=0), mu(t=1,w=1)
+            self.mu_theta = np.sum(self.mu_joint, axis=1) 
+            self.mu_omega = np.sum(self.mu_joint, axis=0) 
+
+            self.mu_cond_w_given_t = self.mu_joint / self.mu_theta[:, np.newaxis]
+    
+        def u(self, omega, action):
+            return 10.0 if omega == action else 0.0
+
+    def solve_cm_probr_corrected(ctx):
+        z = cp.Variable((len(ctx.Theta), 2, len(ctx.A), len(ctx.Omega)), nonneg=True)
+        payments = np.array([ctx.b, -ctx.M])
+        revenue = cp.sum(cp.multiply(z, payments[np.newaxis, :, np.newaxis, np.newaxis]))
+        objective = cp.Maximize(revenue)
+        constraints = []
+
+        for t_idx in range(len(ctx.Theta)):
+            for w_idx in range(len(ctx.Omega)):
+                constraints.append(cp.sum(z[t_idx, :, :, w_idx]) == ctx.mu_joint[t_idx, w_idx])
+
+        for t_rep_idx in range(len(ctx.Theta)):
+            for a_rec_idx, a_rec in enumerate(ctx.A):
+                util_obedient_b = sum(z[t_rep_idx, 0, a_rec_idx, w_idx] * ctx.u(ctx.Omega[w_idx], a_rec) 
+                                     for w_idx in range(len(ctx.Omega)))
+                util_obedient_m = sum(z[t_rep_idx, 1, a_rec_idx, w_idx] * ctx.u(ctx.Omega[w_idx], a_rec) 
+                                     for w_idx in range(len(ctx.Omega)))
+                
+                for a_dev_idx, a_dev in enumerate(ctx.A):
+                    if a_rec_idx != a_dev_idx:
+                        util_deviate_b = sum(z[t_rep_idx, 0, a_rec_idx, w_idx] * ctx.u(ctx.Omega[w_idx], a_dev) 
+                                            for w_idx in range(len(ctx.Omega)))
+                        constraints.append(util_obedient_b >= util_deviate_b)
+                        
+                        util_deviate_m = sum(z[t_rep_idx, 1, a_rec_idx, w_idx] * ctx.u(ctx.Omega[w_idx], a_dev) 
+                                            for w_idx in range(len(ctx.Omega)))
+                        constraints.append(util_obedient_m >= util_deviate_m)
+        U_net = [[None for _ in ctx.Theta] for _ in ctx.Theta]
+    
+        for t_true_idx in range(len(ctx.Theta)):
+            for t_rep_idx in range(len(ctx.Theta)):
+                expected_gross_util_b = sum(z[t_rep_idx, 0, a_idx, w_idx] * ctx.u(ctx.Omega[w_idx], ctx.A[a_idx])
+                                           for a_idx in range(len(ctx.A))
+                                           for w_idx in range(len(ctx.Omega))
+                                           if ctx.mu_joint[t_true_idx, w_idx] > 0) 
+                
+                expected_payment_b = sum(z[t_rep_idx, 0, a_idx, w_idx] * ctx.b
+                                        for a_idx in range(len(ctx.A))
+                                        for w_idx in range(len(ctx.Omega))
+                                        if ctx.mu_joint[t_true_idx, w_idx] > 0)
+
+                expected_gross_util_m = sum(z[t_rep_idx, 1, a_idx, w_idx] * ctx.u(ctx.Omega[w_idx], ctx.A[a_idx])
+                                           for a_idx in range(len(ctx.A))
+                                           for w_idx in range(len(ctx.Omega))
+                                           if ctx.mu_joint[t_true_idx, w_idx] > 0)
+                
+                expected_payment_m = sum(z[t_rep_idx, 1, a_idx, w_idx] * (-ctx.M)
+                                        for a_idx in range(len(ctx.A))
+                                        for w_idx in range(len(ctx.Omega))
+                                        if ctx.mu_joint[t_true_idx, w_idx] > 0)
+
+                mu_t_true = ctx.mu_theta[t_true_idx]
+                if mu_t_true > 1e-9:
+                    U_net[t_true_idx][t_rep_idx] = (expected_gross_util_b + expected_gross_util_m - expected_payment_b - expected_payment_m) / mu_t_true
+                else:
+                    U_net[t_true_idx][t_rep_idx] = 0
+        for t_true_idx in range(len(ctx.Theta)):
+            u_prior = -np.inf
+            prior_dist = ctx.mu_cond_w_given_t[t_true_idx, :]
+            for a_idx, a in enumerate(ctx.A):
+                util = sum(prior_dist[w_idx] * ctx.u(ctx.Omega[w_idx], a) for w_idx in range(len(ctx.Omega)))
+                u_prior = max(u_prior, util)
+            
+            constraints.append(U_net[t_true_idx][t_true_idx] >= u_prior)
+
+            for t_rep_idx in range(len(ctx.Theta)):
+                if t_true_idx != t_rep_idx:
+                    constraints.append(U_net[t_true_idx][t_true_idx] >= U_net[t_true_idx][t_rep_idx])
+        problem = cp.Problem(objective, constraints)
+        problem.solve(solver=cp.SCS, verbose=False)
+    
+        print("--- LP Solver Results (Corrected) ---")
+        print(f"Solver status: {problem.status}")
+        if problem.value is not None:
+            print(f"Optimal Revenue: {problem.value:.4f}")
+        if problem.status in [cp.OPTIMAL, cp.OPTIMAL_INACCURATE]:
+            z_val = z.value
+            print("\n--- Optimal Mechanism Policy ---")
+            for t_rep_idx in range(len(ctx.Theta)):
+                print(f"\nIf buyer reports type theta={t_rep_idx}:")
+                p = np.zeros_like(z_val[t_rep_idx])
+                for w_idx in range(len(ctx.Omega)):
+                    mu_tw = ctx.mu_joint[t_rep_idx, w_idx]
+                    if mu_tw > 1e-9:
+                        p[:, :, w_idx] = z_val[t_rep_idx, :, :, w_idx] / mu_tw
+                    else: 
+                        p[:, :, w_idx] = 0
+    
+                for w_idx, w in enumerate(ctx.Omega):
+                    print(f"  If seller observes omega={w}:")
+                    has_action = False
+                    for a_idx, a in enumerate(ctx.A):
+                        prob_pay_b = p[0, a_idx, w_idx]
+                        prob_pay_m = p[1, a_idx, w_idx]
+                        if prob_pay_b > 1e-6:
+                            print(f"    -> Recommend action '{a}', charge {ctx.b} (Prob: {prob_pay_b:.2f})")
+                            has_action = True
+                        if prob_pay_m > 1e-6:
+                            print(f"    -> Recommend action '{a}', pay back {ctx.M} (Prob: {prob_pay_m:.2f})")
+                            has_action = True
+                    if not has_action:
+                         print("    -> No action recommended.")
+  
+    if __name__ == "__main__":
+        ctx_corr = CorrelatedContext()
+        solve_cm_probr_corrected(ctx_corr)    
+\end{lstlisting}
+
+这个代码框架清晰地展示了如何将一个复杂的机制设计问题，通过理论的指导（CM-probR是最优的），最终转化为一个可以被标准工具解决的具体、结构化的线性规划问题。这是理论与实践结合的完美体现。
