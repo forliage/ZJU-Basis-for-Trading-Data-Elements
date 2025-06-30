@@ -31,4 +31,7 @@
 \contentsline {section}{\numberline {6}案例分析与代码实现 (Case Studies and Implementation)}{29}{section.6}%
 \contentsline {subsection}{\numberline {6.1}案例一：私有预算下的“存款-返还”机制}{29}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}代码实现：用线性规划求解咨询机制}{31}{subsection.6.2}%
+\contentsline {section}{\numberline {7}总结与未来展望 (Conclusion and Future Directions)}{36}{section.7}%
+\contentsline {subsection}{\numberline {7.1}本报告核心贡献}{36}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}未来的研究方向}{36}{subsection.7.2}%
 \contentsfinish 
