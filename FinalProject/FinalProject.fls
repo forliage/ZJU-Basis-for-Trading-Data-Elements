@@ -954,9 +954,11 @@ INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong56.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong95.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong98.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei50.tfm
+INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong9e.tfm
 INPUT FinalProject.aux
 INPUT ./FinalProject.out
 INPUT ./FinalProject.out
+INPUT c:/Windows/Fonts/simsun.ttc
 INPUT c:/Windows/Fonts/simsun.ttc
 INPUT c:/Windows/Fonts/simhei.ttf
 INPUT c:/Windows/Fonts/simhei.ttf
@@ -1110,4 +1112,5 @@ INPUT d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb
 INPUT d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy6.pfb
 INPUT d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy8.pfb
 INPUT d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmtt10.pfb
+INPUT d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
 INPUT d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb

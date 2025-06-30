@@ -1,9 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1751261814.12623 "f:/ZJU-Basis-for-Trading-Data-Elements/FinalProject/FinalProject.tex" "FinalProject.pdf" "FinalProject" 1751261817.85777 0
-  "FinalProject.aux" 1751261816 7285 f0a20a69ee9b6ee1bc730c29afb119f9 "pdflatex"
-  "FinalProject.out" 1751261816 5486 a5fc61770289076c79e9ee884df9533e "pdflatex"
+["pdflatex"] 1751272947.28233 "f:/ZJU-Basis-for-Trading-Data-Elements/FinalProject/FinalProject.tex" "FinalProject.pdf" "FinalProject" 1751272951.21752 0
+  "FinalProject.aux" 1751272950 7549 672c6a91112df90a634d0930ffd1423d "pdflatex"
+  "FinalProject.out" 1751272950 5486 a5fc61770289076c79e9ee884df9533e "pdflatex"
   "FinalProject.tex" 1751251922 20488 1bf7db21e3d4d456e7f8d3ca1252cfeb ""
-  "FinalProject.toc" 1751261816 3136 b2ab8161c00c2934fd8188155a397599 "pdflatex"
+  "FinalProject.toc" 1751272950 3136 b2ab8161c00c2934fd8188155a397599 "pdflatex"
   "c:/Windows/Fonts/msyh.ttc" 1748659216 19704352 1e10e74402e59d54499af795caf0b135 ""
   "c:/Windows/Fonts/simhei.ttf" 1711630440 9755440 983b60188a8e5a7c29c06c674f428b3d ""
   "c:/Windows/Fonts/simsun.ttc" 1748659216 18070492 992f2bdc407dde6953c5ed83ceac9a91 ""
@@ -202,9 +202,11 @@
   "d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong98.tfm" 1723432807 1172 0d85b1f7b78508ff1f0a5ef94e0aaca9 ""
   "d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong99.tfm" 1723432807 1172 445e3c81b2f1f84601e454216cbde866 ""
   "d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong9a.tfm" 1723432807 1172 37a3cd36cf03e67f393bee80b1370d05 ""
+  "d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong9e.tfm" 1723432807 1172 e797949130fb017e573d6826989dff50 ""
   "d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong9f.tfm" 1723432807 1172 9f5913528ac56c45715ab9430a95446c ""
   "d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisongff.tfm" 1723432807 1172 156175f4eaa9daea4e21b890ac9fafb8 ""
   "d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb" 1723430685 10594 310261a6407d360eda1ed257d05cd4df ""
+  "d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb" 1723430685 31764 459c573c03a4949a528c2cc7f557e217 ""
   "d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1723430685 34694 870c211f62cb72718a00e353f14f254d ""
   "d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx10.pfb" 1723431678 121021 836464b5fe0c782d94085eb083550ccc ""
   "d:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb" 1723431678 116908 9a7a12d1e4df280ea0ab4aad83cdef88 ""
@@ -457,7 +459,7 @@
   "part2.tex" 1751205691 13141 355d3b7a035e2e9de63f57e8dafd48a7 ""
   "part3.tex" 1751209326 12205 06c1819a35932c4e64a2d6f8266ae575 ""
   "part4.tex" 1751251646 15390 5b6af8495d36b071a3dc8ab3784b4ba6 ""
-  "part5.tex" 1751261809 14982 1156e72416aeb094321c3191bb41d441 ""
+  "part5.tex" 1751272942 22579 23d2968fed50d7b715a8e432bab9dea6 ""
   (generated)
   "FinalProject.aux"
   "FinalProject.log"
