@@ -679,6 +679,10 @@ INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei51.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei5b.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong50.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong50.tfm
+INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei68.tfm
+INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei78.tfm
+INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei73.tfm
+INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong6c.tfm
 OUTPUT FinalProject.toc
 INPUT ./part1.tex
 INPUT part1.tex
@@ -738,7 +742,6 @@ INPUT d:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei79.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei67.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei7c.tfm
-INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei68.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei63.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei62.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei20.tfm
@@ -756,7 +759,6 @@ INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong99.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei68.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei8e.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei90.tfm
-INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei78.tfm
 INPUT ./part2.tex
 INPUT part2.tex
 INPUT ./part2.tex
@@ -935,7 +937,6 @@ INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong63.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong83.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei6b.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei69.tfm
-INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei73.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong8f.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong8f.tfm
 INPUT ./part5.tex
@@ -955,6 +956,15 @@ INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong95.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong98.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei50.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong9e.tfm
+INPUT ./part6.tex
+INPUT part6.tex
+INPUT ./part6.tex
+INPUT part6.tex
+INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei68.tfm
+INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei73.tfm
+INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei68.tfm
+INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei78.tfm
+INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unihei/unihei73.tfm
 INPUT FinalProject.aux
 INPUT ./FinalProject.out
 INPUT ./FinalProject.out
@@ -974,11 +984,9 @@ INPUT c:/Windows/Fonts/simsun.ttc
 INPUT c:/Windows/Fonts/simhei.ttf
 INPUT c:/Windows/Fonts/simhei.ttf
 INPUT c:/Windows/Fonts/simhei.ttf
-INPUT c:/Windows/Fonts/simhei.ttf
 INPUT c:/Windows/Fonts/simsun.ttc
 INPUT c:/Windows/Fonts/simhei.ttf
 INPUT c:/Windows/Fonts/simsun.ttc
-INPUT c:/Windows/Fonts/simhei.ttf
 INPUT c:/Windows/Fonts/simhei.ttf
 INPUT c:/Windows/Fonts/simhei.ttf
 INPUT c:/Windows/Fonts/simhei.ttf
@@ -1010,6 +1018,8 @@ INPUT c:/Windows/Fonts/simsun.ttc
 INPUT c:/Windows/Fonts/simsun.ttc
 INPUT c:/Windows/Fonts/simsun.ttc
 INPUT c:/Windows/Fonts/simsun.ttc
+INPUT c:/Windows/Fonts/simhei.ttf
+INPUT c:/Windows/Fonts/simhei.ttf
 INPUT c:/Windows/Fonts/simsun.ttc
 INPUT c:/Windows/Fonts/simhei.ttf
 INPUT c:/Windows/Fonts/simhei.ttf

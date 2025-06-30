@@ -28,4 +28,7 @@
 \contentsline {section}{\numberline {5}关键定理与证明 (Key Theorems and Proofs) }{21}{section.5}%
 \contentsline {subsection}{\numberline {5.1}CM-probR定理}{21}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5.2}机制的稳健性：最优收益的连续性分析}{26}{subsection.5.2}%
+\contentsline {section}{\numberline {6}案例分析与代码实现 (Case Studies and Implementation)}{29}{section.6}%
+\contentsline {subsection}{\numberline {6.1}案例一：私有预算下的“存款-返还”机制}{29}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}代码实现：用线性规划求解咨询机制}{31}{subsection.6.2}%
 \contentsfinish 
