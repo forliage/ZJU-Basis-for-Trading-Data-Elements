@@ -1,9 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1751251647.24022 "f:/ZJU-Basis-for-Trading-Data-Elements/FinalProject/FinalProject.tex" "FinalProject.pdf" "FinalProject" 1751251651.00896 0
-  "FinalProject.aux" 1751251650 6330 59bb8f142139e9d15513d1c0b331c2be "pdflatex"
-  "FinalProject.out" 1751251650 4922 d6e5cc930d639d09805e1d0cb693d425 "pdflatex"
-  "FinalProject.tex" 1751209442 20465 466cae2a4b66f4b263d3788783597587 ""
-  "FinalProject.toc" 1751251650 2832 ef5388b0e1ef84427cccc92191695fc8 "pdflatex"
+["pdflatex"] 1751261814.12623 "f:/ZJU-Basis-for-Trading-Data-Elements/FinalProject/FinalProject.tex" "FinalProject.pdf" "FinalProject" 1751261817.85777 0
+  "FinalProject.aux" 1751261816 7285 f0a20a69ee9b6ee1bc730c29afb119f9 "pdflatex"
+  "FinalProject.out" 1751261816 5486 a5fc61770289076c79e9ee884df9533e "pdflatex"
+  "FinalProject.tex" 1751251922 20488 1bf7db21e3d4d456e7f8d3ca1252cfeb ""
+  "FinalProject.toc" 1751261816 3136 b2ab8161c00c2934fd8188155a397599 "pdflatex"
   "c:/Windows/Fonts/msyh.ttc" 1748659216 19704352 1e10e74402e59d54499af795caf0b135 ""
   "c:/Windows/Fonts/simhei.ttf" 1711630440 9755440 983b60188a8e5a7c29c06c674f428b3d ""
   "c:/Windows/Fonts/simsun.ttc" 1748659216 18070492 992f2bdc407dde6953c5ed83ceac9a91 ""
@@ -449,7 +449,7 @@
   "d:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1723432838 5513072 e74750128a020857593cbdf8ab887bd3 ""
   "d:/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1723432996 8221449 503f4359f91628e33ed934ad4d44422a ""
   "d:/texlive/2024/texmf.cnf" 1723432817 713 e69b156964470283e0530f5060668171 ""
-  "f:/ZJU-Basis-for-Trading-Data-Elements/FinalProject/FinalProject.tex" 1751209442 20465 466cae2a4b66f4b263d3788783597587 ""
+  "f:/ZJU-Basis-for-Trading-Data-Elements/FinalProject/FinalProject.tex" 1751251922 20488 1bf7db21e3d4d456e7f8d3ca1252cfeb ""
   "image14.png" 1751205390 57242 c4901947d11d343c4bc9e0ab3af32f2c ""
   "image15.png" 1751205398 89639 ee19e48b742ebd2443302bc73300fd3d ""
   "logo.jpg" 1739886433 62280 9f124cfc9081388344ff342e6dc19d2e ""
@@ -457,6 +457,7 @@
   "part2.tex" 1751205691 13141 355d3b7a035e2e9de63f57e8dafd48a7 ""
   "part3.tex" 1751209326 12205 06c1819a35932c4e64a2d6f8266ae575 ""
   "part4.tex" 1751251646 15390 5b6af8495d36b071a3dc8ab3784b4ba6 ""
+  "part5.tex" 1751261809 14982 1156e72416aeb094321c3191bb41d441 ""
   (generated)
   "FinalProject.aux"
   "FinalProject.log"

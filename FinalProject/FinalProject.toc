@@ -1,28 +1,31 @@
 \babel@toc {english}{}\relax 
-\contentsline {section}{\numberline {1}引言 (Introduction)}{2}{section.1}%
-\contentsline {subsection}{\numberline {1.1}信息市场的兴起}{2}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}一个具体例子：广告商的困境}{2}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}核心挑战：信息销售为何与众不同}{3}{subsection.1.3}%
-\contentsline {subsection}{\numberline {1.4}研究目标：设计最优机制}{4}{subsection.1.4}%
-\contentsline {section}{\numberline {2}问题的形式化 (Formalizing the Problem)}{4}{section.2}%
-\contentsline {subsection}{\numberline {2.1}核心要素：上下文 (Context)$(u,\mu )$}{4}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}买方的目标：最大化效用}{5}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}卖方的目标：最大化收益}{6}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}初步尝试：“密封信封”机制 (The "Sealed Envelope" Mechanism)}{6}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}示例}{7}{subsection.2.5}%
-\contentsline {section}{\numberline {3}通用交互协议与显示原理 (General Protocols and the Revelation Principle)}{11}{section.3}%
-\contentsline {subsection}{\numberline {3.1}描述一切可能：通用交互协议 (Generic Interactive Protocol)}{11}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}机制设计的基石：显示原理 (The Revelation Principle)}{12}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}更进一步：单轮显示机制 (One-Round Revelation)}{13}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}预算约束下的简化}{14}{subsection.3.4}%
-\contentsline {section}{\numberline {4}求解最优机制：从独立信号到咨询机制}{15}{section.4}%
-\contentsline {subsection}{\numberline {4.1}独立信号下的最优机制}{15}{subsection.4.1}%
-\contentsline {subsubsection}{\numberline {4.1.1}合约菜单的视角}{15}{subsubsection.4.1.1}%
-\contentsline {subsubsection}{\numberline {4.1.2}信息的数学表示：从信号到后验}{16}{subsubsection.4.1.2}%
-\contentsline {subsubsection}{\numberline {4.1.3}构建线性规划 (LP)}{16}{subsubsection.4.1.3}%
-\contentsline {subsubsection}{\numberline {4.1.4}一个具体的计算例子}{17}{subsubsection.4.1.4}%
-\contentsline {subsection}{\numberline {4.2}引入预算约束：咨询机制的诞生}{18}{subsection.4.2}%
-\contentsline {subsubsection}{\numberline {4.2.1}咨询机制的线性规划 (LP)}{19}{subsubsection.4.2.1}%
-\contentsline {subsubsection}{\numberline {4.2.2}私有预算与存款-返还机制}{19}{subsubsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.3}终极挑战：相关信号与概率性返还}{20}{subsection.4.3}%
+\contentsline {section}{\numberline {1}引言 (Introduction)}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}信息市场的兴起}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}一个具体例子：广告商的困境}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}核心挑战：信息销售为何与众不同}{4}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}研究目标：设计最优机制}{5}{subsection.1.4}%
+\contentsline {section}{\numberline {2}问题的形式化 (Formalizing the Problem)}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}核心要素：上下文 (Context)$(u,\mu )$}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}买方的目标：最大化效用}{6}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}卖方的目标：最大化收益}{7}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}初步尝试：“密封信封”机制 (The "Sealed Envelope" Mechanism)}{7}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}示例}{8}{subsection.2.5}%
+\contentsline {section}{\numberline {3}通用交互协议与显示原理 (General Protocols and the Revelation Principle)}{12}{section.3}%
+\contentsline {subsection}{\numberline {3.1}描述一切可能：通用交互协议 (Generic Interactive Protocol)}{12}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}机制设计的基石：显示原理 (The Revelation Principle)}{13}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}更进一步：单轮显示机制 (One-Round Revelation)}{14}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}预算约束下的简化}{15}{subsection.3.4}%
+\contentsline {section}{\numberline {4}求解最优机制：从独立信号到咨询机制}{16}{section.4}%
+\contentsline {subsection}{\numberline {4.1}独立信号下的最优机制}{16}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}合约菜单的视角}{16}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}信息的数学表示：从信号到后验}{17}{subsubsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.3}构建线性规划 (LP)}{17}{subsubsection.4.1.3}%
+\contentsline {subsubsection}{\numberline {4.1.4}一个具体的计算例子}{18}{subsubsection.4.1.4}%
+\contentsline {subsection}{\numberline {4.2}引入预算约束：咨询机制的诞生}{19}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}咨询机制的线性规划 (LP)}{20}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}私有预算与存款-返还机制}{20}{subsubsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.3}终极挑战：相关信号与概率性返还}{21}{subsection.4.3}%
+\contentsline {section}{\numberline {5}关键定理与证明 (Key Theorems and Proofs) }{21}{section.5}%
+\contentsline {subsection}{\numberline {5.1}CM-probR定理}{21}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}机制的稳健性：最优收益的连续性分析}{26}{subsection.5.2}%
 \contentsfinish 
