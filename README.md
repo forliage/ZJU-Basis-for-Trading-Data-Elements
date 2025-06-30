@@ -9,12 +9,12 @@
 - Lec3 note: finished
 - Lec4 note: todo
 - Lec6 note: todo
-- Lec5 note:
+- Lec5 note: todo
 
 - hw1: finished
 - hw2:
 
-- lab1:
+- lab1:finished
 - lab2:
 
 - final project(question 8): finished

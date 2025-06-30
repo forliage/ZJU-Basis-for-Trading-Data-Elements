@@ -31,9 +31,16 @@ def mc_sv(
         np.random.shuffle(indexes) # 随机打乱玩家索引，生成随机排列
         
         # 你的代码填写在这里，目标是对当前采样到的排列中的每个玩家计算边际贡献，并累加进 Shapley 值中
-        
-    
-    return np.array(list(sv/n_samples))
+        prev_utility = game.get_utility(np.array([]))
+        for i in range(n):
+            current_player = indexes[i]
+            current_coalition = indexes[:i+1]
+            current_utility = game.get_utility(np.array(list(current_coalition)))
+            marginal_contribution = current_utility - prev_utility
+            sv[current_player] += marginal_contribution
+            prev_utility = current_utility
+    return sv / n_samples
+    #return np.array(list(sv/n_samples))
 
 
 if __name__ == "__main__":

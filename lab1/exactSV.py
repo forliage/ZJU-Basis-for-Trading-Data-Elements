@@ -40,7 +40,32 @@ def exact_sv(
     print(f'Generated {num_sets} Sets')
     
     # 你的代码填写在这里
+    # 预计算阶乘，避免重复计算
+    factorials = [math.factorial(i) for i in range(n + 1)]
+    utility_cache = {}
+    all_coalitions = chain.from_iterable(combinations(coalition, r) for r in range(n + 1))
+    
+    print(f'Calculating utilities for {2**n} coalitions...')
+    for s_tuple in all_coalitions:
+        utility_cache[s_tuple] = game.get_utility(np.array(list(s_tuple)))
+    
+    print('Calculating Shapley values...')
+    for i in trange(n, desc="Calculating SV"):
+        sv_i = 0.0
+        other_players = [p for p in coalition if p != i]
+        subsets_without_i = chain.from_iterable(combinations(other_players, r) for r in range(n))
+        
+        for s_tuple in subsets_without_i:
+            s_len = len(s_tuple)
+            
+            utility_S = utility_cache[s_tuple]
+            s_union_i_tuple = tuple(sorted(list(s_tuple) + [i]))
+            utility_S_union_i = utility_cache[s_union_i_tuple]
+            marginal_contribution = utility_S_union_i - utility_S
+            weight = factorials[s_len] * factorials[n - s_len - 1]
+            sv_i += weight * marginal_contribution
 
+        ext_sv[i] = sv_i / factorials[n]
 
     return ext_sv
 
