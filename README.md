@@ -7,7 +7,7 @@
 - Lec1 note: finished
 - Lec2 note: finished
 - Lec3 note: finished
-- Lec4 note: todo
+- Lec4 note: finished
 - Lec6 note: finished
 - Lec5 note: todo
 
