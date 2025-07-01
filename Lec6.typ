@@ -436,6 +436,31 @@ $ "UCB"_i (t) = hat(mu)_(i, N_i (t-1)) + sqrt((2 log t)/(N_i (t-1))) <= mu_i + 2
 现在我们来分析这三种情况发生的次数：
 
 - 对于情况 3，我们对其进行代数变换：$ Delta_i <= 2 sqrt((2 log t)/(N_i (t-1))) ==>Delta_i^2 <= (8 log t)/(N_i (t-1)) ==> N_i (t-1)<= (8 log t)/(Delta_i^2) $ 由于$t<=T$，所以臂$i$因为这种情况被选择的次数不会超过$(8 log T)/(Delta_i^2)$。我们称这个阈值为$l_i = ceil((8 log T)/(Delta_i^2))$。
+- 对于情况 1 和 2，我们可以使用 霍夫丁不等式 (Hoeffding's Inequality) 来约束它们发生的概率。令$epsilon = sqrt((2 log t)/s)$，我们得到：$ P(hat(x_s) - x > sqrt((2 log t)/s))<= e^(-2 s ((2 log t)/s))= e^(-4 log t) = t^(-4) $ 这个概率非常小。臂$i$在$t$时刻因为情况 1 或 2 被选择的次数，其期望可以被一个很小的、可求和的序列约束。在所有轮次中，由于这两种“坏事件”而选择臂$i$的总次数的期望是一个常数。例如，$sum_(t=1)^infinity t^(-4)= (pi^4)/(90) - 1$
+
+综合来看，臂$i$被选择的总次数的期望$bb(E) [N_i (T)]$主要由情况 3 决定。因此，我们可以得到一个上界：
+$ bb(E)[N_i (T)] <= (8 log T)/(Delta_i^2) + C $
+其中$C$是一个不依赖于$T$的小常数（来自初始拉动和坏事件的次数）。在分析渐近行为时，我们主要关注$log T$项。
+
+现在我们有了每个次优臂被选择次数的期望上界。我们回到总遗憾的公式，并使用 柯西-施瓦茨不等式 (Cauchy-Schwarz Inequality)。
+
+总遗憾的期望为$R_T = sum_(i=1)^K bb(E)[N_i (T)] Delta_i$。
+$ R_T^2 = (sum_(i=1)^K bb(E)[N_i (T)]Delta_i)^2 = (sum_(i=1)^K sqrt(bb(E)[N_i (T)]) dot sqrt(bb(E) [N_i (T)]) Delta_i)^2 $
+根据柯西-施瓦茨不等式得到：
+$ R_T^2 <= (sum_(i=1)^K (sqrt(bb(E)[N_i (T)]))^2)dot (sum_(i=1)^K (sqrt(bb(E) [N_i (T)])Delta_i)^2) $
+$ R_T^2<=(sum_(i=1)^K bb(E)[N_i (T)])dot (sum_(i=1)^K bb(E)[N_i (T)] Delta_i^2) $
+
+第一项： 所有臂被选择次数的期望之和就是总试验次数$T$:
+$ sum_(i=1)^K bb(E) [N_i (T)] = bb(E) [sum_(i=1)^K N_i (T)] = T $
+第二项： 我们使用第一步得到的结论$bb(E)[N_i (T)]<= (8 log T)/(Delta_i^2) +C$。
+$ sum_(i=1)^K bb(E)[N_i (T)]Delta_i^2 = bb(E)[N_(a^ast)]Delta_(a^ast)^2 + sum_(i!= a^ast) bb(E)[N_i (T)]Delta_i^2 $
+由于$Delta_(a^ast)=0$，第一项为0.由于总共有$K-1$个次优臂，并且$Delta_i in [0,1]$，所以$Delta_i^2 <= 1$。
+$ <= (K-1)(8 log T) + C sum_(i!= a^ast) Delta_i^2 <= 8 K log T + C K $
+所以，这一项的上界是$O(K log T)$。 
+将这两项的结果代入得到：
+$ R_T^2 <= T dot O(K log T)=O(K T log T) $
+由此得到：
+$ R_T <= O(sqrt(K T log T)) $
 
 === 10.汤普森采样算法
 
