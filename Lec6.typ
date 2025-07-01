@@ -463,6 +463,102 @@ $ R_T^2 <= T dot O(K log T)=O(K T log T) $
 $ R_T <= O(sqrt(K T log T)) $
 
 === 10.汤普森采样算法
+基本思想：采用贝叶斯方法，为每个臂维护一个先验概率分布，表示对该臂奖励概率的信念。每次选择臂时，从每个臂的后验概率分布中进行采样，并选择采样值最高的臂。最后，根据获得的奖励更新所选臂的后验概率分布，从而在探索和利用之间取得平衡。
+
+#block(
+  stroke: (top: 1pt, bottom: 1pt), // 设置上下边框线
+  inset: 8pt, // 设置内部留白
+  width: 100% // 宽度占满
+)[
+  #grid(
+    columns: (auto, 1fr), // 列定义：行号列宽度自适应，内容列占满
+    column-gutter: 1em,   // 列间距
+    row-gutter: 0.65em,   // 行间距
+
+    // --- 算法内容开始 ---
+
+    "1:", [对于每个候选项 $k=1, ..., K$, 令 $S_1(a_k) = 0, F_1(a_k) = 0$],
+    "2:", [*for* $t = 1, ..., T$ *do*],
+
+    // 一级缩进
+    "3:", [#h(2em) *for* $k = 1, ..., K$ *do*],
+
+    // 二级缩进
+    "4:", [#h(4em) 从 $Beta(S_t(a_k) + 1, F_t(a_k) + 1)$ 分布中采样 $theta_t(a_k)$],
+    
+    // 一级缩进
+    "5:", [#h(2em) *end for*],
+    "6:", [#h(2em) 选择 $a_t = arg max_a theta_t(a)$, 并观察奖励 $r_t$],
+    "7:", [#h(2em) *if* $r_t = 1$ *then*],
+
+    // 二级缩进
+    "8:", [#h(4em) $S_(t+1)(a_t) = S_t(a_t) + 1$],
+    
+    // 一级缩进
+    "9:", [#h(2em) *else*],
+
+    // 二级缩进
+    "10:", [#h(4em) $F_(t+1)(a_t) = F_t(a_t) + 1$],
+    
+    // 一级缩进
+    "11:", [#h(2em) *end if*],
+    "12:", [*end for*],
+  )
+]
+
+具体而言，汤普森采样算法使用 Beta 分布$B(alpha, beta)$来作为每个臂的选择概率分布；
+- Beta分布中参数$alpha$和$beta$分别表示伯努利试验中的成功和失败次数，$alpha$越大分布越集中于 1，$beta$越大则越接近于 0；
+- 在每一个时间步中，对于每个臂，从其$"Beta"(S_t (a) + 1, F_t (a) + 1)$分布
+中进行采样。选择采样值最高的臂。执行所选臂，并观察奖励。
+- 根据获得的奖励更新所选臂的 Beta 分布参数；
+- 如果成功，则$S_t (a) = S_t (a) + 1$；如果失败，则$F_t (a) = F_t (a) + 1$
+
+两个问题：
++ 只能用 Beta 分布吗？并非如此，事实上共轭先验分布（即先验分布和后验分布属于同一个分布族）即可；
++ 只能用于奖励$r_t in {0,1}$？如果奖励$r_t in [0,1]$，则以$r_t$为概率从${0,1}$中抽一个数作为反馈。
+
+总而言之，汤普森采样算法相当简洁优雅，并且也能得到和 UCB 一致的遗憾界，甚至实证中表明其效果比 UCB 算法更好。
+
+定理：TS算法的遗憾界为$O(sqrt(K T log T))$。 
+
+我们来给出一个证明思路：
+
+引理：对于任何次优臂$k(Delta_k > 0)$，汤普森采样算法选择该臂的期望次数$bb(E) [N_k (T)]$满足以下上界：$ bb(E)[N_k (T)] <= O((log T)/(Delta_k^2)) $
+现在我们利用$bb(E)[N_k (T)]<= C times  (log T)/(Delta_k^2)$(其中$C$是一个正常数)来推导最终的界。总遗憾为：
+$ R_T = sum_(k:Delta_k > 0) Delta_k bb(E) [N_k (T)]<= sum_(k:Delta_k > 0) Delta_k dot (C log T)/(Delta_k^2) = C log T sum_(k: Delta_k > 0) 1/(Delta_k) $
+这个界仍然依赖于$Delta_k$。为了消除这种依赖，我们采用一个标准的“分而治之”的技巧。我们引入一个可调参数$epsilon>0$，并将次优臂分为两组：
++ “大差距”臂：$Delta_k > epsilon$；
++ "小差距"臂：$0< Delta_k <= epsilon$
+
+对于“大差距”臂：其遗憾贡献$R_("large")$为：
+$ R_("large") = sum_(k:Delta_k > epsilon)Delta_k bb(E) [N_k (T)]<= sum_(k:Delta_k > epsilon) Delta_k dot (C log T)/(Delta_k^2) = C log T sum_(k: Delta_k > epsilon) 1/(Delta_k) $
+因为$Delta_k > epsilon$，所以$1/(Delta_k) < 1/epsilon$。最多有$K-1$个次优臂，所以：
+$ R_("large")< C log T sum_(k:Delta_k > epsilon) 1/epsilon <= C log T dot K/epsilon $
+
+对于“小差距”臂:其遗憾贡献$R_("small")$为：
+$ R_("small") = sum_(k:0<Delta_k <= epsilon) Delta_k bb(E)[N_k (T)] $
+对于这组臂，我们直接用$Delta_k <= epsilon$来放缩：
+$ R_("small") <= sum_(k:0<Delta_k <= epsilon)epsilon dot bb(E)[N_k (T)]=epsilon sum_(k:0<Delta_k <= epsilon)bb(E)[N_k (T)] $
+所有臂被选择的总次数是$T$，所以$sum_(k=1)^K bb(E)[N_k (T)]=T$。因此，$sum_(k:0<Delta_k <= epsilon) bb(E)[N_k (T)]$必然小于$T$。 
+$ R_("small") <= epsilon dot T $
+总遗憾$R_T = R_("large") + R_("small")$，所以我们有：
+$ R_T <= (C K log T)/epsilon + epsilon T $
+这个不等式对任意$epsilon > 0$都成立。为了得到最紧的界，我们选择一个$epsilon$来最小化右边的表达式$f(epsilon) = A/epsilon + B epsilon$，其中$A = C K log T$且 $B = T$。
+通过求导$f^prime (epsilon) = - A/(epsilon^2) + B = 0$，我们得到最优的$epsilon$：
+$ epsilon^2 = A/B ==> epsilon = sqrt(A/B) = sqrt((C K log T)/T) $
+将其代入并化简得到：
+$ R_T <= 2 sqrt(C) dot sqrt(K T log T) $
+由此得到：
+$ R_T = O(sqrt(K T log T)) $
+
+我们的仓库中有一个文件bandit_comparison.py，用于模拟和绘制两种方式的结果，
+运行后如下：
+
+#figure(
+  image("/images/image14.png", width: 80%),
+) <fig:fig14>
+
+从图中可以明显观察到，汤普森采样（蓝色曲线）的累积遗憾显著低于 UCB1（橙色曲线）。这意味着在这次模拟中，TS 算法更快地识别出了最优臂（概率为0.9的臂），并更多地利用了它，从而获得了更高的总奖励和更低的总遗憾。
 
 == 二、对抗性多臂老虎机
 
