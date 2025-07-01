@@ -668,4 +668,125 @@ $ R_T = T times epsilon + log_(1 - epsilon) 1/n times 1 = T epsilon + (ln n)/(- 
 
 第一处修改扩展了代价的范围，第二处修改使得权重更保守，否则不存在完美策略时所有行动的权重全部归零
 
+=== 8.MWU算法
+
+#block(
+  radius: 6pt,              // 设置圆角半径
+  stroke: blue,               // 设置边框为蓝色
+  inset: 10pt,                // 设置内部留白/内边距
+)[
+  // 未编号的指令
+  Initialize weight $w_1(i) = 1, forall i = 1, ... n$
+
+  For $t = 1, ..., T$
+
+  // 使用 pad 命令为整个列表添加左边距，实现缩进
+  #pad(left: 2em)[
+    1. Let $W_t = sum_(i in [n]) w_t(i)$, pick action $i$ with probability $w_t(i)/W_t$ \
+    // 新增改动：将区间 [0,1] 设置为红色
+    2. Observe cost vector $c_t in #text(red)[$[0, 1]$]^n$ \
+    // 此处与上一版本相同
+    3. For any $i in [n]$, update $w_(t+1)(i) = w_t(i) dot (1 - #text(red)[$epsilon$] dot c_t(i))$
+  ]
+]
+
+上图给出的算法就是乘性权重（Multiplicative Weights Update, MWU）算法。算法的直观是，根据每个行动在之前阶段的表现来决定下一阶段的权重，即表现好的行动权重增加，表现差的行动权重减少。
+
+那么，乘性权重算法是否是无憾的呢？
+
+定理：乘性权重算法在之前的问题设定下的遗憾至多为$O(sqrt(T ln n))$。
+
+接下来证明定理。关键：将期望代价与权重的下降关联起来。第$t$轮的期望代价为：
+$ overline(C_t) = sum_(i=1)^n p_t (i) c_t (i) = (sum_(i=1)^n w_t (i) c_t (i))/(W_t) $
+
+事实上这正比于总权重的下降，即$sum_(i=1)^n epsilon w_t (i) c_t (i) = epsilon W_t overline(C_t)$。因此下面的证明思想是分析总权重下降的速度。
+
+引理：$W_(t+1)<= W_t dot e^(- epsilon overline(C_t))$，其中$W_t = sum_(i=1)^n w_t (i)$是第$t$轮的总权重，$overline(C_t)$是第$t$轮的期望代价。
+
+直接根据权重更新法则即可证明：
+
+$
+W_(t+1) &= sum_(i=1)^n w_(t+1) (i) = sum_(i=1)^n w_t (i) dot (1 - epsilon c_t (i)) \
+        &= W_t - epsilon sum_(i=1)^n w_t (i) c_t (i) = W_t - epsilon W_t overline(C_t) = W_t (1 - epsilon overline(C_t)) <= W_t dot e^(-epsilon overline(C_t))
+$
+
+不断应用上述引理，可以得到如下推论：
+
+$ W_(t+1) <= n e^(- epsilon sum_(t=1)^T overline(C_t)) $
+
+引理：对于任意的行动$i$，都有$W_(t+1) >= e^(- T epsilon^2) dot e^(- epsilon sum_(t=1)^T c_t (i))$
+
+这一步的放缩比较激进，但非常有效：
+
+$
+W_(t+1) &>= w_(t+1) (i) = w_1 (i) dot product_(t=1)^T (1 - epsilon c_t (i)) \
+        &>= product_(t=1)^T e^(- epsilon c_t (i) - epsilon^2 c_t^2 (i)) >= e^(- T epsilon^2) dot e^(- epsilon sum_(t=1)^T c_t (i))
+$
+
+其中第二个不等号使用$1 - delta >= e^(- delta - delta^2)$，第三行直接将$c_t^2 (i)$项放大成1.
+
+回顾上述给出的结论：
++ $W_(t+1) <= n e^(- epsilon sum_(t=1)^T overline(C_t))$；
++ 对于任意的行动$i$，都有$W_(t+1) >= e^(- T epsilon^2) dot e^(- epsilon sum_(t=1)^T c_t (i))$。综合有$e^(-T epsilon^2) dot e^(- epsilon sum_(t=1)^T c_t (i)) <= n e^(- epsilon sum_(t=1)^T overline(C_t))$，这等价于$ - T epsilon^2 - epsilon sum_(t=1)^T c_t (i) <= ln n - epsilon sum_(t=1)^T overline(C_t) $重新整理有 $ sum_(t=1)^T overline(C_t) - sum_(t=1)^T c_t (i) <= (ln n)/epsilon + T epsilon $ 取$epsilon = sqrt((ln n)/T)$，有$sum_(t=1)^T overline(C_t) - min_(i) sum_(t=1)^T c_t (i)<= 2 sqrt(T ln n)$，即遗憾至多为$O(sqrt(T ln n))$。 
+
+- 注意 MWU 算法对于任意的代价序列都是无憾的，这就是对抗性的意义，上述证明也不依赖于任何对代价序列的假设；
+- 如果使用$w_(t+1) (i) = w_t (i) dot e^(- epsilon c_t (i))$，因为$e^(-epsilon) approx 1 - epsilon$因此也是可以进行类似的分析的；这样得到的算法称为 Hedge 算法；
+- 如果从全反馈更换为老虎机反馈，算法思路不变，得到的是 Exp3 算法。
+
 == 三、多臂老虎机的应用
+
+=== 1.基本思想： 
+
+- 面对具有不确定性的问题的“万金油”方法
+- 在数据市场相关文献中的应用
+  - 在线定价问题：数据卖家不确定数据对于买家的价值，可以使用随机多臂老虎机建模解决；
+  - 数据获取问题：数据买家不确定数据市场上哪些数据对于自己的训练任务而言最有效，可以使用随机或对抗性多臂老虎机建模解决。
+
+=== 2.动态定价问题
+
+下面给出在线定价最经典文献的一个简化场景，解决方法与上述随机和对抗性多臂老虎机算法都不同。
+
+例：假设你要出售一份数据，你知道会有$N$个人来购买你的数据，并且每个人对数据的估值$v$都完全一致，都在$[0,1]$中。买家是逐个到达的，你需要提供一个价格$p$，如果$v>=p$，买家就会购买你的数据，否则买家会离开。你的目标是尽快地学习到$v$的值，误差范围是$epsilon = 1/N$。 
+
+显然，最naive 的想法就是通过二分搜索迅速达到这一精度：最多需要$log N$次的搜索来实现这一精度。
+
+=== 3.二分搜索
+
+如果的确遇到了最坏的情况，$log N$次搜索之后，可以设置到价格$p >= hat(v) - 1/N$，其中$hat(v)$是我们第$log N$轮学习到的值；在这种情况下，$N$轮之后的总收益是
+$ 0 + (N - log N)(v - 2/N) approx v N - v log N - 2 $
+则二分搜索的遗憾为$R approx v N - (v N - v log N - 2) = v log N + 2$； 
+这是最小的可能遗憾吗？
+
+定理：存在一个算法，使得其遗憾至多为$1 + 2 log log N$。 
+
+- 尽管二分搜索是在没有任何先验信息的情况下能搜索到$N$的最快算法，但当猜测的$p_i > v$时，卖家一分钱也赚不到；
+- 也就是说，二分搜索在向上探索的时候可能过于激进，因此改进的算法需要在探索时更加保守！
+
+=== 4.改进算法
+
+#figure(
+  image("/images/image15.png", width: 60%),
+) <fig:fig15>
+
+定理：改进的算法的遗憾至多为$1 + 2 log log N$。 
+
+首先需要分析区间长度$b_i - a_i$的特点，有如下结论：
+
+引理：$Delta_i = 2^(- 2^(j-1))$，并且当$Delta_(i+1) = (Delta_i)^2$时，$b_(i+1) - a_(i+1) = Delta_i = sqrt(Delta_(i+1))$。 
+
+第一个结论根据数学归纳法可以证明：
++ 当$i=1$时，$Delta_1 = 1/2 = 2^(- 2^0)$； 
++ 假设对于$i=k$成立，即$Delta_k = 2^(- 2^(j-1))$，则 $ Delta_(k+1) = (Delta_k)^2 = 2^(- 2^(j-1) - 2^(j-1)) = 2^(- 2^j) $ 第二个结论，当$Delta_(i+1)=(Delta_i)^2$时，根据算法直接得到$b_(i+1) - a_(i+1) = Delta_(i) = sqrt(Delta_(i+1))$。 
+
+
+- 在$b_i - a_i <= 1/N$后，总的遗憾最多为1；
+- 因此重点在于分析达到这一步之前的遗憾；
+- 在达到这一步之前 Δ 更新了多少次？
+   - $log log N$：令$2^(- 2^i)= 1/N$，则$i = log log N$； 
+   - 接下来就要证明每个$Delta_i$内产生的遗憾是有限的。
+   - 引理：任意的步长$Delta_i$内的遗憾至多为 2。
+- 如果在$Delta_i$下直接被拒绝，遗憾至多为 1；
+- 如果发生出售，则最多出售$(sqrt(Delta_i))/(Delta_i)$次，因为$Delta_(i-1)=sqrt(Delta_i)$，如果超出这个次数，那么$Delta_(i-1)$在前面的步骤不会更新；
+- 因此出售过程中的遗憾最多为$ (sqrt(Delta_i))/(Delta_i) times sqrt(Delta_i) = 1 $
+
+综合上述两个引理可以得到改进算法的遗憾为$1 + 2 log log N$。
