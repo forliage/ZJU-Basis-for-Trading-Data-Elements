@@ -12,7 +12,7 @@
 - Lec5 note: todo
 
 - hw1: finished
-- hw2: todo
+- hw2: finished
 
 - lab1:finished
 - lab2:finished
