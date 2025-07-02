@@ -300,6 +300,56 @@ $ x_i (c_i) dot (p_i (c_i) - c_i) >= x_i (c_i^prime) dot (p_i (c_i^prime) - c_i)
 
 设卖家$i$的均衡期望效用为$U_i (c_i) = u_i (c_i) = x_i (c_i) (p_i (c_i) - c_i)$。
 
+从第 1 问的 DSIC 条件出发，我们有两个不等式：
+
+(a)真实成本为$c_1$的卖家谎报为$c_2$不会获益：$x_1 (p_1 - c_1) >= x_2 (p_2 - c_1)$
+
+(b)真实成本为$c_2$的卖家谎报为$c_1$不会获益：$x_2 (p_2 - c_2) >= x_1 (p_1 - c_2)$
+
+整理得到：
+$ x_1 p_1 - x_2 p_2 >= c_1 (x_1 - x_2), x_1 p_1 - x_2 p_2 <= c_2 (x_1 - x_2) $
+合并得到：
+$ c_2 (x_1 - x_2) >= x_1 p_1 - x_2 p_2 >= c_1 (x_1 - x_2) $
+得到
+$ (c_2 - c_1) (x_1 - x_2) >= 0 $
+如果我们取$c_2>c_1$，那么$c_2 - c_1 >0$，因此必须有$x_1 - x_2 >= 0$，即$x_i (c_1) >= x_i (c_2)$。这证明了$x_i (c)$必须是$c$的非增函数。 
+
+根据 DSIC，卖家会选择$c^prime$来最大化其效用$u_i (c^prime | c_i) = x_i (c^prime) (p_i (c^prime) - c_i)$。在均衡状态下，最优选择是$c^prime=c_i$。 
+
+根据包络定理，均衡效用 $U_i (c_i)$对其类型（真实成本$c_i$）的导数为：
+$ (d U_i (c_i))/(d c_i) = (partial u_i (c^prime | c_i))/(partial c_i) |_(c^prime = c_i) = (partial [x_i (c^prime) (p_i (c^prime) - c_i)])/(partial c_i) |_(c^prime = c_i) = - x_i (c_i) $
+
+我们对上式从$c_i$到$infinity$进行积分得到：
+$ integral_(c_i)^(infinity) (d U_i (z))/(d z) d z = - integral_(c_i)^(infinity) x_i (z) d z $
+$ [U_i (z)]_(c_i)^(infinity) = - integral_(c_i)^(infinity) x_i (z) d z $
+$ lim_(z -> infinity) U_i (z) - U_i (c_i) = - integral_(c_i)^(infinity) x_i (z) d z $
+根据题设的边界条件，当$c-> infinity$时，$c dot x_i (c) -> 0$且$p_i (c) dot x_i (c) -> 0$。这意味着$lim_(c -> infinity) U_i (c) = lim_(c -> infinity) [x_i (c) p_i (c) - c x_i (c)] = 0$。因此我们得到：
+$ - U_i (c_i) = - integral_(c_i)^(infinity) x_i (z) d z $
+$ U_i (c_i) = integral_(c_i)^(infinity) x_i (z) d z $
+将$U_i (c_i)$的定义代回，即$x_i (c_i) (p_i (c_i) - c_i) = integral_(c_i)^(infinity) x_i (z) d z$。整理后即得到期望支付规则：
+$ x_i (c_i) p_i (c_i) = c_i x_i (c_i) + integral_(c_i)^(infinity) x_i (z) d z $
+
+下面证明充分性，现在我们假设单调性和支付规则都成立，需要证明卖家诚实汇报是最优策略。即证明对于任意$c_i, c_i^prime$，都有$U_i (c_i) >= u_i (c_i^prime | c_i)$。 
+根据支付规则，我们有
+$ U_i (c_i) = integral_(c_i)^(infinity) x_i (z) d z $
+而谎报的效用为
+$ u_i (c_i^prime | c_i) = x_i (c_i^prime) p_i (c_i^prime) - c_i x_i (c_i^prime) $
+将支付规则代入谎报的效用中：
+$ u_i (c_i^prime | c_i) = (c_i^prime x_i (c_i^prime) + integral_(c_i^prime)^(infinity) x_i (z) d z) - c_i x_i (c_i^prime) $
+$ u_i (c_i^prime | c_i) = (c_i^prime - c_i) x_i (c_i^prime) + integral_(c_i^prime)^(integral) x_i (z) d z $
+我们要证明的是$U_i (c_i) - u_i (c_i^prime | c_i) >= 0$。 
+
+$
+ U_i (c_i) - u_i (c_i^prime | c_i) &= integral_(c_i)^(infinity) x_i (z) d z - ((c_i^prime - c_i) x_i (c_i^prime) + integral_(c_i^prime)^(infinity) x_i (z) d z) \
+                       &= integral_(c_i)^(c_i^prime) x_i (z) d z - (c_i^prime - c_i) x_i (c_i^prime)
+$
+现在我们分情况讨论：
+
+- 情况 1：$c_i^prime > c_i$。 由于$x_i (z)$是非增函数（单调性条件），对于任意$z in [c_i, c_i^prime]$，都有$x_i (z) >= x_i (c_i^prime)$。因此， $ integral_(c_i)^(c_i^prime) x_i (z) d z  >= integral_(c_i)^(c_i^prime) d z = x_i (c_i^prime) (c_i^prime - c_i) $ 所以$U_i (c_i) - u_i (c_i^prime | c_i)>=0$。
+- 情况 2：在这种情况下，积分区间是反的:$ integral_(c_i)^(c_i^prime) x_i (z) d z = - integral_(c_i^prime)^(c_i) x_i (z) d z $ 由于$x_i (z)$非增，对于任意$z in [c_i^prime, c_i]$，都有$x_i (z) <= x_i (c_i^prime)$。因此，$ integral_(c_i^prime)^(c_i) x_i (z) d z <= integral_(c_i^prime)^(c_i) x_i (c_i^prime) d z = x_i (c_i^prime) ( c_i - c_i^prime) $ 两边乘以 -1，不等号反向：$ - integral_(c_i^prime)^(c_i) x_i (z) d z >= - x_i (c_i^prime) (c_i - c_i^prime) = x_i (c_i^prime) (c_i^prime - c_i) $ 即$ integral_(c_i)^(c_i^prime) x_i (z) d z >= (c_i^prime - c_i) x_i (c_i^prime) $ 所以$ U_i (c_i) - u_i (c_i^prime | c_i)>=0 $
+
+两种情况都证明了不等式成立，因此充分性得证。 综上，我们已经证明了这两个条件是机制$(x,p)$为 DSIC 的充要条件。
+
 == 2.4.虚拟估值和正则性条件
 
 本题将推导出对于虚拟估值$c(v) = v - (1 - F(v))/(f(v))$和正则化条件的有趣描述。考虑$[0, v_("max")]$上严格单调递增的分布函数$F$，其概率密度函数$f$为正，其中$v_("max") < + infinity$。对于估值服从分布$F$的竞拍者，当交易成功概率为$q in [0,1]$时，定义$V(q) = F^(-1) (1 - q)$为物品的 “价格”，进而可以定义$R(q) = q dot V(q)$为从竞拍者处获得的期望收益。称$R(q)$为$F$的收益曲线函数，注意$R(0)=R(1)=0$。 
