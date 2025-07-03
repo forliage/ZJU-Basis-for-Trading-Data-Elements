@@ -1,49 +1,50 @@
 \section{求解最优机制：从独立信号到咨询机制}
 
-本章的目标是，将机制设计问题从一个抽象的“寻找最佳规则”问题，转变为一个具体的、可以求解的线性规划 (Linear Programming, LP) 问题。
+本章的目标是，将机制设计问题从一个抽象的"寻找最佳规则"问题，转变为一个具体的、可以求解的线性规划 (Linear Programming, LP) 问题。
 
 \subsection{独立信号下的最优机制}
 
 我们从最简单但富有启发性的情况开始：
 
 \begin{itemize}
-    \item 买方信号$\omega$和卖方类型$\theta$互相独立，即$\mu(\omega,\theta)=\mu(\omega)\mu(\theta)$。
+    \item 卖方信号$\omega$和买方类型$\theta$互相独立，即$\mu(\omega,\theta)=\mu(\omega)\mu(\theta)$。
     \item 没有预算约束。
     \item 买方是不承诺的。
 \end{itemize}
 
-根据第三章的定理3.2，我们知道在这种情况下，最优机制一定是单轮的。更具体地说，它是一种“先收费，后披露”的机制，被称为定价映射机制 (Pricing Mappings Mechanism)，这等价于向买方提供一个“合约菜单”。
+根据第三章的定理3.2，我们知道在这种情况下，最优机制一定是单轮的。更具体地说，它是一种"先收费，后披露"的机制，被称为定价映射机制 (Pricing Mappings Mechanism)，这等价于向买方提供一个"合约菜单"。
 
 \subsubsection{合约菜单的视角}
 
-一个直接显示机制可以被看作是卖方向买方提供一个合约菜单 (Menu of Contracts)$\{(Y_\theta, t_\theta)\}_{\theta\in\Theta}$。
+一个直接显示机制可以被看作是卖方向买方提供一个合约菜单 (Menu of Contracts) $\{(Y_\theta, t_\theta)\}_{\theta\in\Theta}$。
 
 \begin{itemize}
-    \item 菜单上的每一项$(Y_\theta,t_\theta)$都是一个“合约”，它名义上是为类型为$\theta$的买方准备的。
+    \item 菜单上的每一项$(Y_\theta,t_\theta)$都是一个"合约"，它名义上是为类型为$\theta$的买方准备的。
     \item $t_\theta$是购买该合约的价格。
     \item $Y_\theta$是一个信号生成器。它是一个随机变量，其分布依赖于卖方的真实信息$\omega$。买方购买合约后，卖方会根据$\omega$从$Y_\theta$中抽取一个信号$s$并发送给买方。
 \end{itemize}
 
-买方的决策过程：
+\textbf{买方的决策过程：}
 
 \begin{enumerate}
     \item 一个真实类型为$\theta$的买方，会审视菜单上的所有合约。
-    \item 对于每个合约 $(Y_{\theta^\prime},t_{\theta^\prime})$，他会计算如果自己购买该合约能获得的期望效用。
+    \item 对于每个合约$(Y_{\theta'},t_{\theta'})$，他会计算如果自己购买该合约能获得的期望效用。
     \item 他会选择那个能给他带来最高净效用的合约。
-    \item 他还会在“购买最优合约”和“什么都不买”（获得保留效用）之间进行比较。
+    \item 他还会在"购买最优合约"和"什么都不买"（获得保留效用）之间进行比较。
 \end{enumerate}
 
-卖方的设计问题：卖方的目标是设计这个菜单$\{(Y_\theta,t_\theta)\}$，使得：
+\textbf{卖方的设计问题：}
+卖方的目标是设计这个菜单$\{(Y_\theta,t_\theta)\}$，使得：
 
 \begin{enumerate}
-    \item 激励相容 (Incentive Compatibility, IC)：对于每个$\theta$，类型为$\theta$的买方确实觉得合约$(Y_\theta,t_\theta)$是菜单上最好的选择（或者之一）。
-    \item 个体理性 (Individual Rationality, IR)：对于每个$\theta$，类型为$\theta$的买方购买合约$(Y_\theta,t_\theta)$的净效用，不低于他不参与交易的保留效用。
+    \item \textbf{激励相容} (Incentive Compatibility, IC)：对于每个$\theta$，类型为$\theta$的买方确实觉得合约$(Y_\theta,t_\theta)$是菜单上最好的选择（或者之一）。
+    \item \textbf{个体理性} (Individual Rationality, IR)：对于每个$\theta$，类型为$\theta$的买方购买合约$(Y_\theta,t_\theta)$的净效用，不低于他不参与交易的保留效用。
     \item 在满足以上两个条件下，最大化总期望收益$\sum\limits_{\theta}\mu(\theta)t_\theta$。
 \end{enumerate}
 
 \subsubsection{信息的数学表示：从信号到后验}
 
-“信号生成器$Y_\theta$”这个概念仍然有些抽象。为了进行数学优化，我们需要一种更具体的方式来描述信息。一个关键的转化是：任何关于信息披露的机制，其本质都是在改变买方的后验信念。
+"信号生成器$Y_\theta$"这个概念仍然有些抽象。为了进行数学优化，我们需要一种更具体的方式来描述信息。一个关键的转化是：任何关于信息披露的机制，其本质都是在改变买方的后验信念。
 
 \begin{itemize}
     \item 一个信号$s$的全部意义，在于它如何更新买方对$\omega$的信念。
@@ -51,116 +52,114 @@
     \item 在收到信号$s$之后，根据贝叶斯法则，买方的信念更新为一个后验分布$q(\omega)=\Pr(\omega|s)$。
 \end{itemize}
 
-因此，我们可以用后验分布的分布来等价地描述一个信号生成器$Y_\theta$:$Y_\theta$不再是生成信号$s$，而是以一定的概率$x_\theta (q)$，直接生成一个后验分布$q$。
-买方支付$t_\theta$后，他会得到一个后验分布$q$，然后基于这个$q$去做决策。
+因此，我们可以用后验分布的分布来等价地描述一个信号生成器$Y_\theta$：$Y_\theta$不再是生成信号$s$，而是以一定的概率$x_\theta(q)$，直接生成一个后验分布$q$。买方支付$t_\theta$后，他会得到一个后验分布$q$，然后基于这个$q$去做决策。
 
 如果买方的后验信念是$q$，他的最优期望效用是：
 $$v_\theta(q)=\max_{a\in A}\mathbb{E}_{\omega\sim q}[u(\theta,\omega,a)]=\max_{a\in A}\sum\limits_{\omega\in\Omega}q(\omega)u(\theta,\omega,a)$$
 
 函数$v_\theta(q)$是$q$的一个分片线性凸函数（它是多个线性函数的最大值）。
 
-一个后验的分布$\{x_\theta (q)\}$并非任意的，它必须满足一个物理约束：所有可能的后验的期望，必须等于先验。这被称为贝叶斯可信性 (Bayesian Plausibility) 或 可行性约束 (Feasibility Constraint)。
-$$\mathbb{E}_{q\sim x_\theta}[q]=\sum\limits_{q}x_\theta (q)\cdot = p (\text{其中}p(\omega)=\mu(\omega))$$
-这个约束保证了卖方不能“无中生有”地创造信息。
+一个后验的分布$\{x_\theta(q)\}$并非任意的，它必须满足一个物理约束：所有可能的后验的期望，必须等于先验。这被称为\textbf{贝叶斯可信性} (Bayesian Plausibility) 或\textbf{可行性约束} (Feasibility Constraint)。
+$$\mathbb{E}_{q\sim x_\theta}[q]=\sum\limits_{q}x_\theta(q)\cdot q = p \quad \text{（其中}p(\omega)=\mu(\omega)\text{）}$$
+这个约束保证了卖方不能"无中生有"地创造信息。
 
 \subsubsection{构建线性规划 (LP)}
 
 现在，我们可以将所有元素组合起来，构建一个用于求解最优合约菜单的线性规划。
 
-设$t_\theta$为每个买方类型$\theta$设计的价格。$x_\theta(q)$：对于每个类型$\theta$和每个可能的后验$q$，选择生成后验$q$的概率。
+\textbf{决策变量：}
+\begin{itemize}
+    \item $t_\theta$：为每个买方类型$\theta$设计的价格。
+    \item $x_\theta(q)$：对于每个类型$\theta$和每个可能的后验$q$，选择生成后验$q$的概率。
+\end{itemize}
 
-我们不需要考虑所有可能的后验。因为效用函数$v_\theta (q)$是分片线性的，其“拐点”只发生在有限的位置。
-我们可以预先计算出一个有限的、足够大的“有趣后验”集合$Q^\ast$，
-最优机制只会从这个集合中选择后验来生成。$Q^\ast$的大小是关于$|A|,|\Omega|,|\Theta|$的多项式。
-这个结论使得变量的数量从无限变成了有限（尽管可能仍然很大）。
+我们不需要考虑所有可能的后验。因为效用函数$v_\theta(q)$是分片线性的，其"拐点"只发生在有限的位置。我们可以预先计算出一个有限的、足够大的"有趣后验"集合$Q^*$，最优机制只会从这个集合中选择后验来生成。$Q^*$的大小是关于$|A|,|\Omega|,|\Theta|$的多项式。这个结论使得变量的数量从无限变成了有限（尽管可能仍然很大）。
 
-线性规划 LP1 (独立信号)
+\textbf{线性规划 LP1 (独立信号)}
 
 \begin{align*}
-    \max_{t,x} \quad & \sum_{\theta \in \Theta} \mu(\theta) t_{\theta} && (\text{目标: 最大化期望收益}) \\
-    \text{s.t.} \quad & \sum_{q \in Q^*} x_{\theta}(q) v_{\theta}(q) - t_{\theta} \geq \sum_{q \in Q^*} x_{\theta'}(q) v_{\theta}(q) - t_{\theta'} && \forall \theta, \theta' \in \Theta \quad (\text{IC: 类型}\theta\text{不羡慕}\theta') \\
-    & \sum_{q \in Q^*} x_{\theta}(q) v_{\theta}(q) - t_{\theta} \geq v_{\theta}(p) && \forall \theta \in \Theta \quad (\text{IR: 购买不劣于不买}) \\
-    & \sum_{q \in Q^*} x_{\theta}(q) \cdot q = p && \forall \theta \in \Theta \quad (\text{可行性: 后验的期望是先验}) \\
+    \max_{t,x} \quad & \sum_{\theta \in \Theta} \mu(\theta) t_{\theta} && (\text{目标：最大化期望收益}) \\
+    \text{s.t.} \quad & \sum_{q \in Q^*} x_{\theta}(q) v_{\theta}(q) - t_{\theta} \geq \sum_{q \in Q^*} x_{\theta'}(q) v_{\theta}(q) - t_{\theta'} && \forall \theta, \theta' \in \Theta \quad (\text{IC：类型}\theta\text{不羡慕}\theta') \\
+    & \sum_{q \in Q^*} x_{\theta}(q) v_{\theta}(q) - t_{\theta} \geq v_{\theta}(p) && \forall \theta \in \Theta \quad (\text{IR：购买不劣于不买}) \\
+    & \sum_{q \in Q^*} x_{\theta}(q) \cdot q = p && \forall \theta \in \Theta \quad (\text{可行性：后验的期望是先验}) \\
     & \sum_{q \in Q^*} x_{\theta}(q) = 1 && \forall \theta \in \Theta \quad (\text{概率和为1}) \\
     & x_{\theta}(q) \geq 0, \quad t_{\theta} \geq 0 && \forall \theta, q \quad (\text{非负性})
 \end{align*}
 
 \begin{itemize}
-    \item IC 约束：左边是类型为$\theta$的买方购买合约$(Y_\theta,t_\theta)$的净效用，右边是他冒充$\theta^\prime$购买合约$(Y_{\theta^\prime},t_{\theta^\prime})$的净效用。注意，当他冒充时，他收到的是为$\theta^\prime$设计的信号，但他评估价值时用的是自己的效用函数$v_\theta$。
-    \item IR 约束：购买合约的净效用，不低于他的保留效用$v_\theta (p)$（基于先验$p$做决策的效用）。
-    \item 可行性约束：保证了信息披露的物理可能性。
+    \item \textbf{IC 约束}：左边是类型为$\theta$的买方购买合约$(Y_\theta,t_\theta)$的净效用，右边是他冒充$\theta'$购买合约$(Y_{\theta'},t_{\theta'})$的净效用。注意，当他冒充时，他收到的是为$\theta'$设计的信号，但他评估价值时用的是自己的效用函数$v_\theta$。
+    \item \textbf{IR 约束}：购买合约的净效用，不低于他的保留效用$v_\theta(p)$（基于先验$p$做决策的效用）。
+    \item \textbf{可行性约束}：保证了信息披露的物理可能性。
 \end{itemize}
 
-这个 LP 的变量数量和约束数量都是关于$|\Theta|$和$|Q^\ast|$的多项式。虽然$|Q^\ast|$可能很大，
-但这个问题原则上是可以在多项式时间内求解的。
-更妙的是，通过考察其对偶问题 (Dual Problem)，
-可以利用椭球法 (Ellipsoid Method) 和分离预言机 (Separation Oracle) 在多项式时间内求解，
-即使$|Q^\ast|$是指数级的。这证明了最优机制是可计算的。
+这个LP的变量数量和约束数量都是关于$|\Theta|$和$|Q^*|$的多项式。虽然$|Q^*|$可能很大，但这个问题原则上是可以在多项式时间内求解的。更妙的是，通过考察其对偶问题 (Dual Problem)，可以利用椭球法 (Ellipsoid Method) 和分离预言机 (Separation Oracle) 在多项式时间内求解，即使$|Q^*|$是指数级的。这证明了最优机制是可计算的。
 
 \subsubsection{一个具体的计算例子}
 
-让我们回顾第一部分中的代码示例，并用这里的LP框架来分析它。
+让我们回顾第二章中的代码示例，并用这里的LP框架来分析它。
 
 \begin{itemize}
     \item $\Theta=\{0,1\},\Omega=\{0,1\}$
-    \item $v_0 (q)$和$v_1 (q)$是两个关于后验$q(\omega=1)$的分片线性凸函数。
+    \item $v_0(q)$和$v_1(q)$是两个关于后验$q(\omega=1)$的分片线性凸函数。
     \item $p=(0.5,0.5)$是先验。
-    \item 我们计算出$\xi(0)=2.0,\xi(1)=2.0$。保留效用$v_0(p)=v_1(p)=2.0$。
+    \item 我们计算出$\xi(0)=2.0,\xi(1)=2.0$。保留效用$v_0(p)=v_1(p)=8.0$。
 \end{itemize}
 
 一个简单的可行解是：
 \begin{itemize}
-    \item 合约菜单：只提供一个合约$(Y,t)$。
-    \item 价格$t$：设为2.0。
-    \item 信息披露$Y$：完全披露$\omega$。这等价于，如果$\omega=0$，生成的后验是$q=(1,0)$；如果$\omega=1$，生成的后验是$q=(0,1)$。 这个$Y$的可行性：$0.5\times (1,0) + 0.5\times (0,1) = (0.5, 0.5)=p$，满足。
-    \item 验证约束：
+    \item \textbf{合约菜单}：只提供一个合约$(Y,t)$。
+    \item \textbf{价格$t$}：设为2.0。
+    \item \textbf{信息披露$Y$}：完全披露$\omega$。这等价于，如果$\omega=0$，生成的后验是$q=(1,0)$；如果$\omega=1$，生成的后验是$q=(0,1)$。
+    \item \textbf{这个$Y$的可行性}：$0.5\times (1,0) + 0.5\times (0,1) = (0.5, 0.5)=p$，满足。
+    \item \textbf{验证约束}：
        \begin{itemize}
-         \item IR:对$\theta=0$，购买后的期望效用是 10.0 (因为总能做出正确决策)，支付 2.0，净效用 8.0。不购买的保留效用也是 8.0。所以 8.0$\geq$8.0 满足。$\theta=1$同理。
+         \item IR：对$\theta=0$，购买后的期望效用是10.0（因为总能做出正确决策），支付2.0，净效用8.0。不购买的保留效用也是8.0。所以$8.0 \geq 8.0$满足。$\theta=1$同理。
          \item IC：因为只有一个合约，IC约束自动满足。
        \end{itemize}
-    \item 收益：$\mu(0)\times t + \mu(1)\times t = 2.0$
+    \item \textbf{收益}：$\mu(0)\times t + \mu(1)\times t = 2.0$
 \end{itemize}
 
-这与我们之前通过“密封信封”机制找到的解是一致的。但LP框架更加通用，即使在$\xi(\theta)$不同，或者最优机制需要部分披露信息时，LP依然能找到最优解。
+这与我们之前通过"密封信封"机制找到的解是一致的。但LP框架更加通用，即使在$\xi(\theta)$不同，或者最优机制需要部分披露信息时，LP依然能找到最优解。
 
 \subsection{引入预算约束：咨询机制的诞生}
 
 引入一个关键的现实因素：预算约束。
 
-每个买方$(\theta,b)$有一个预算$b$，他支付的总额不能超过$b$。
-为了简化，我们假设预算是公开的（即$\mu(\omega,\theta,b)$中，$b$是确定的）。
-私有预算的情况类似，只是增加了对$b$的激励约束。
-卖方也有一个预算$M$，她支付给买方的总额不能超过$M$。
+每个买方$(\theta,b)$有一个预算$b$，他支付的总额不能超过$b$。为了简化，我们假设预算是公开的（即$\mu(\omega,\theta,b)$中，$b$是确定的）。私有预算的情况类似，只是增加了对$b$的激励约束。卖方也有一个预算$M$，她支付给买方的总额不能超过$M$。
 
-预算约束如何改变游戏？它使得一种更简洁、更强大的机制成为可能——咨询机制 (Consulting Mechanism)。
+\textbf{预算约束如何改变游戏？}它使得一种更简洁、更强大的机制成为可能——咨询机制 (Consulting Mechanism)。
 
-\textbf{定义 4.1 (直接支付的咨询机制, CM-dirP)}这是一种非常直观的机制，模拟了真实的咨询过程：
+\textbf{定义 4.1 (直接支付的咨询机制, CM-dirP)}：这是一种非常直观的机制，模拟了真实的咨询过程：
 
 \begin{enumerate}
-    \item 承诺 (Commit): 卖方（顾问）首先公开承诺一套“服务方案”。对于每一种可能的买方报告类型$\theta$，她都定义了：
-    \item 报告 (Report): 买方（客户）向卖方报告自己的类型$\theta$。
-    \item 支付 (Pay): 买方支付服务费$t_\theta$。
-    \item 推荐 (Recommend): 卖方根据真实的$\omega$和买方的报告$\theta$，按照$p_\theta (a|\omega)$随机抽取一个行动$a$，并将其作为“建议”告诉买方。
+    \item \textbf{承诺} (Commit)：卖方（顾问）首先公开承诺一套"服务方案"。对于每一种可能的买方报告类型$\theta$，她都定义了：
+       \begin{itemize}
+         \item 一个价格$t_\theta$。
+         \item 一个推荐策略$p_\theta(a|\omega)$（当卖方观察到$\omega$时，她推荐行动$a$的概率）。
+       \end{itemize}
+    \item \textbf{报告} (Report)：买方（客户）向卖方报告自己的类型$\theta$。
+    \item \textbf{支付} (Pay)：买方支付服务费$t_\theta$。
+    \item \textbf{推荐} (Recommend)：卖方根据真实的$\omega$和买方的报告$\theta$，按照$p_\theta(a|\omega)$随机抽取一个行动$a$，并将其作为"建议"告诉买方。
 \end{enumerate}
 
-“听话”约束 (Obedience Constraint)这种机制有一个至关重要的内在约束，称为听话约束 (Obedience Constraint)。卖方承诺的推荐策略$p_\theta (a|\omega)$必须是“诚实”的，
-即当买方被推荐了行动$a$时，他自己计算后发现，$a$确实是当前情况下的最优选择。
+\textbf{"听话"约束 (Obedience Constraint)}：这种机制有一个至关重要的内在约束，称为听话约束 (Obedience Constraint)。卖方承诺的推荐策略$p_\theta(a|\omega)$必须是"诚实"的，即当买方被推荐了行动$a$时，他自己计算后发现，$a$确实是当前情况下的最优选择。
 
-形式化地，当买方被推荐行动$a$时，他会更新自己对$\omega$的信念。新的后验是$\Pr(\omega|\text{推荐}=a)$。他必须发现，最大化
- $\sum\limits_{\omega}\Pr(\omega | \text{推荐}=a)u(\theta,\omega,a^\prime)$ 的$a^\prime$就是$a$。
-$$a = \arg \max_{a^\prime \in A}\sum\limits_{\omega\in\Omega}\mu(\omega)p_{\theta}(a|\omega)u(\theta,\omega,a^\prime)$$
+形式化地，当买方被推荐行动$a$时，他会更新自己对$\omega$的信念。新的后验是$\Pr(\omega|\text{推荐}=a)$。他必须发现，最大化$\sum\limits_{\omega}\Pr(\omega | \text{推荐}=a)u(\theta,\omega,a')$的$a'$就是$a$。
+$$a = \arg \max_{a' \in A}\sum\limits_{\omega\in\Omega}\frac{\mu(\omega)p_{\theta}(a|\omega)}{\sum_{\omega'}\mu(\omega')p_{\theta}(a|\omega')}u(\theta,\omega,a')$$
 
-卖方需要设计的东西不再是抽象的“信号生成器”，而是具体的“行动推荐策略”。由于行动集合$A$通常比后验空间$Q^\ast$小得多，这大大简化了设计空间。
-在有公开预算和独立信号的情况下，这种直接支付的咨询机制 (CM-dirP) 是最优的。
+卖方需要设计的东西不再是抽象的"信号生成器"，而是具体的"行动推荐策略"。由于行动集合$A$通常比后验空间$Q^*$小得多，这大大简化了设计空间。在有公开预算和独立信号的情况下，这种直接支付的咨询机制 (CM-dirP) 是最优的。
 
 \subsubsection{咨询机制的线性规划 (LP)}
 
 我们可以为 CM-dirP 构建一个更紧凑、变量更少的线性规划。
 
-设$t_\theta$为类型$\theta$设计的价格。$p_\theta (a|\omega)$推荐策略。为了让它成为 LP 的变量，我们通常定义
-$z_\theta (a,\omega)=\mu(\omega)p_\theta (a|\omega)$。$\sum\limits_{a}p_\theta(a|\omega)=1$的约束就变成了$\sum\limits_{a} z_\theta(a,\omega)=\mu(\omega)$。
+\textbf{决策变量：}
+\begin{itemize}
+    \item $t_\theta$：为类型$\theta$设计的价格。
+    \item $p_\theta(a|\omega)$：推荐策略。为了让它成为LP的变量，我们通常定义$z_\theta(a,\omega)=\mu(\omega)p_\theta(a|\omega)$。$\sum\limits_{a}p_\theta(a|\omega)=1$的约束就变成了$\sum\limits_{a} z_\theta(a,\omega)=\mu(\omega)$。
+\end{itemize}
 
-线性规划 LP2 (咨询机制)
+\textbf{线性规划 LP2 (咨询机制)}
 
 \begin{align*}
     \max_{t,z} \quad & \sum_{\theta \in \Theta} \mu(\theta) t_{\theta} \\
@@ -172,22 +171,20 @@ $z_\theta (a,\omega)=\mu(\omega)p_\theta (a|\omega)$。$\sum\limits_{a}p_\theta(
     & z_{\theta}(a, \omega) \geq 0, \quad t_{\theta} \geq 0 && \forall \theta, a, \omega
 \end{align*}
 
-这个 LP 的变量数量是$|\Theta|+|\Theta|\times |A|\times |\Omega|$，约束数量也是这些参数的多项式。这是一个标准大小的LP，可以用任何现成的求解器（如 Gurobi, CPLEX）高效求解。
-这比之前需要椭球法的 LP1 在实践中要高效得多。
+这个LP的变量数量是$|\Theta|+|\Theta|\times |A|\times |\Omega|$，约束数量也是这些参数的多项式。这是一个标准大小的LP，可以用任何现成的求解器（如 Gurobi, CPLEX）高效求解。这比之前需要椭球法的 LP1 在实践中要高效得多。
 
 \subsubsection{私有预算与存款-返还机制}
 
-如果买方的预算$b$是其私有信息$\theta$的一部分，那么 CM-dirP 就不再最优了。
-因为买方可能会为了支付更低的服务费$t_\theta$而谎报自己的预算。
+如果买方的预算$b$是其私有信息$\theta$的一部分，那么 CM-dirP 就不再最优了。因为买方可能会为了支付更低的服务费$t_\theta$而谎报自己的预算。
 
-存款-返还的咨询机制 (CM-depR)流程：
+\textbf{存款-返还的咨询机制 (CM-depR)} 流程：
 
 \begin{enumerate}
-    \item 报告与存款: 买方报告其类型和预算$(\theta,b)$，并立即存入其声称的全部预算$b$作为押金。
-    \item 推荐与返还: 卖方根据报告$(\theta,b)$和$\omega$，推荐一个行动$a$，并返还一笔金额给买方。最终买方支付的净额为$t_{\theta,b}$。净支付额$t_{\theta,b}$是由卖方设计的。返还的金额是$b-t_{\theta,b}$。
+    \item \textbf{报告与存款}：买方报告其类型和预算$(\theta,b)$，并立即存入其声称的全部预算$b$作为押金。
+    \item \textbf{推荐与返还}：卖方根据报告$(\theta,b)$和$\omega$，推荐一个行动$a$，并返还一笔金额给买方。最终买方支付的净额为$t_{\theta,b}$。净支付额$t_{\theta,b}$是由卖方设计的。返还的金额是$b-t_{\theta,b}$。
 \end{enumerate}
 
-“先存后返”的结构，使得买方无法通过谎报来获利。如果他低报预算，比如真实预算是100，他谎报是50，那么他最多只能存50，这会限制他能参与的合约。如果他高报预算，他根本拿不出那么多钱来做押金。这个简单的操作有效地“检验”了买方的预算声明，从而恢复了激励相容性。
+"先存后返"的结构，使得买方无法通过谎报来获利。如果他低报预算，比如真实预算是100，他谎报是50，那么他最多只能存50，这会限制他能参与的合约。如果他高报预算，他根本拿不出那么多钱来做押金。这个简单的操作有效地"检验"了买方的预算声明，从而恢复了激励相容性。
 
 CM-depR 是私有预算和独立信号下的最优机制，并且同样可以被一个标准大小的线性规划求解。
 
@@ -195,17 +192,18 @@ CM-depR 是私有预算和独立信号下的最优机制，并且同样可以被
 
 当信号相关时，即使有预算约束，问题也变得更加复杂。买方的支付必须依赖于卖方最终揭示的信息。
 
-一种被称为概率性返还的咨询机制 (CM-probR) 在最一般的情况下（相关信号，私有预算）都是最优的。
+一种被称为\textbf{概率性返还的咨询机制} (CM-probR) 在最一般的情况下（相关信号，私有预算）都是最优的。
 
-机制流程:
+\textbf{机制流程：}
 
 \begin{enumerate}
-    \item 报告与存款: 买方报告$(\theta,b)$并存入预算$b$。
-    \item 推荐与概率性结果: 卖方根据$(\theta,b)$和$\omega$，随机决定一个组合$(a,i)$，其中$a$是推荐行动，$i$是一个支付结果的指示器，$i \in \{\text{返还}0, \text{返还}(b+M)\}$。
-    \item 如果$i$是“返还0”，买方净支付$b$。如果$i$是“返还$(b+M)$”，卖方向买方支付$M$，买方净支付$-M$。
+    \item \textbf{报告与存款}：买方报告$(\theta,b)$并存入预算$b$。
+    \item \textbf{推荐与概率性结果}：卖方根据$(\theta,b)$和$\omega$，随机决定一个组合$(a,i)$，其中$a$是推荐行动，$i$是一个支付结果的指示器，$i \in \{\text{返还}0, \text{返还}(b+M)\}$。
+    \item 如果$i$是"返还0"，买方净支付$b$。如果$i$是"返还$(b+M)$"，卖方向买方支付$M$，买方净支付$-M$。
 \end{enumerate}
 
 这个机制看起来非常奇特，为什么要引入卖方预算$M$，并且支付额如此极端？
 
-强烈的激励信号：这两种极端的支付结果，向不同类型的买方传递了非常强烈的不同信号。因为信号是相关的，类型为$\theta$和$\theta^\prime$的买方对$\omega$的信念不同，因此他们对“最终支付$b$”和“最终倒拿$M$”这两种情况发生的概率预期也不同。
-利用相关性：卖方正是利用了这种预期的差异，来精细地进行价格歧视，从而榨取最大收益。这呼应了著名的 Cremer-McLean 机制 的思想，即当买方类型充分相关时，卖方几乎可以榨取所有剩余价值。
+\textbf{强烈的激励信号：}这两种极端的支付结果，向不同类型的买方传递了非常强烈的不同信号。因为信号是相关的，类型为$\theta$和$\theta'$的买方对$\omega$的信念不同，因此他们对"最终支付$b$"和"最终倒拿$M$"这两种情况发生的概率预期也不同。
+
+\textbf{利用相关性：}卖方正是利用了这种预期的差异，来精细地进行价格歧视，从而榨取最大收益。这呼应了著名的 Cremer-McLean 机制的思想，即当买方类型充分相关时，卖方几乎可以榨取所有剩余价值。

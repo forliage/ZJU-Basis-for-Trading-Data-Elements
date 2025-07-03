@@ -507,9 +507,11 @@ INPUT d:/texlive/2024/texmf-dist/fonts/tfm/public/lm/lmbsy10.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/public/lm/lmbsy10.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/public/lm/lmbsy7.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/public/lm/ec-lmbx12.tfm
+INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong8d.tfm
+INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong67.tfm
+INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong70.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong8b.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong7b.tfm
-INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong67.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong79.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong5b.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong4e.tfm
@@ -563,8 +565,6 @@ INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong03.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong7c.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong6a.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong20.tfm
-INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong8d.tfm
-INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong70.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong99.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong8f.tfm
 INPUT d:/texlive/2024/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong90.tfm

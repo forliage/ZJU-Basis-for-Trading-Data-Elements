@@ -1,9 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1751287605.11439 "f:/ZJU-Basis-for-Trading-Data-Elements/FinalProject/FinalProject.tex" "FinalProject.pdf" "FinalProject" 1751287609.24366 0
-  "FinalProject.aux" 1751287608 9143 df47594d26c099c356fe6b8e3138adf7 "pdflatex"
-  "FinalProject.out" 1751287608 6704 2d75431aa8b7c59d5f679300bddc48b0 "pdflatex"
-  "FinalProject.tex" 1751287604 21838 0449e4b74aa7773c15734234ba75fafe ""
-  "FinalProject.toc" 1751287608 3780 5db5b409224dda0679bab3f2206cebb9 "pdflatex"
+["pdflatex"] 1751287418.43268 "f:/ZJU-Basis-for-Trading-Data-Elements/FinalProject/FinalProject.tex" "FinalProject.pdf" "FinalProject" 1751287422.77005 0
+  "FinalProject.aux" 1751287421 9143 df47594d26c099c356fe6b8e3138adf7 "pdflatex"
+  "FinalProject.out" 1751287421 6704 2d75431aa8b7c59d5f679300bddc48b0 "pdflatex"
+  "FinalProject.tex" 1751287417 21827 e45061f39e5bd7f2927c7dc647d7c870 ""
+  "FinalProject.toc" 1751287421 3780 5db5b409224dda0679bab3f2206cebb9 "pdflatex"
   "c:/Windows/Fonts/msyh.ttc" 1748659216 19704352 1e10e74402e59d54499af795caf0b135 ""
   "c:/Windows/Fonts/simhei.ttf" 1711630440 9755440 983b60188a8e5a7c29c06c674f428b3d ""
   "c:/Windows/Fonts/simsun.ttc" 1748659216 18070492 992f2bdc407dde6953c5ed83ceac9a91 ""
@@ -454,7 +454,7 @@
   "d:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1723432838 5513072 e74750128a020857593cbdf8ab887bd3 ""
   "d:/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1723432996 8221449 503f4359f91628e33ed934ad4d44422a ""
   "d:/texlive/2024/texmf.cnf" 1723432817 713 e69b156964470283e0530f5060668171 ""
-  "f:/ZJU-Basis-for-Trading-Data-Elements/FinalProject/FinalProject.tex" 1751287604 21838 0449e4b74aa7773c15734234ba75fafe ""
+  "f:/ZJU-Basis-for-Trading-Data-Elements/FinalProject/FinalProject.tex" 1751287417 21827 e45061f39e5bd7f2927c7dc647d7c870 ""
   "image14.png" 1751205390 57242 c4901947d11d343c4bc9e0ab3af32f2c ""
   "image15.png" 1751205398 89639 ee19e48b742ebd2443302bc73300fd3d ""
   "logo.jpg" 1739886433 62280 9f124cfc9081388344ff342e6dc19d2e ""
