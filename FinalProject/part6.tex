@@ -107,45 +107,34 @@ class CorrelatedContext:
         self.b = 10.0  
         self.M = 10.0  
 
-        # 联合概率分布
         self.mu_joint = np.array([[0.4, 0.1],  # theta=0: mu(t=0,w=0), mu(t=0,w=1)
                                   [0.1, 0.4]]) # theta=1: mu(t=1,w=0), mu(t=1,w=1)
         self.mu_theta = np.sum(self.mu_joint, axis=1) 
         self.mu_omega = np.sum(self.mu_joint, axis=0) 
 
-        # 条件概率：P(w|t)
         self.mu_cond_w_given_t = self.mu_joint / self.mu_theta[:, np.newaxis]
 
     def u(self, omega, action):
-        """效用函数：匹配时获得10，否则为0"""
         return 10.0 if omega == action else 0.0
 
 def solve_cm_probr_corrected(ctx):
-    """
-    求解概率性返还的咨询机制(CM-probR)
-    z[t,pay,a,w] = 报告类型t时，在状态w下推荐行动a并要求支付pay的概率*联合概率
-    """
+
     z = cp.Variable((len(ctx.Theta), 2, len(ctx.A), len(ctx.Omega)), nonneg=True)
-    
-    # 支付结构：0=收费b, 1=返还M
+
     payments = np.array([ctx.b, -ctx.M])
     revenue = cp.sum(cp.multiply(z, payments[np.newaxis, :, np.newaxis, np.newaxis]))
     objective = cp.Maximize(revenue)
     
     constraints = []
 
-    # 可行性约束：后验期望等于先验
     for t_idx in range(len(ctx.Theta)):
         for w_idx in range(len(ctx.Omega)):
             constraints.append(cp.sum(z[t_idx, :, :, w_idx]) == ctx.mu_joint[t_idx, w_idx])
 
-    # 听话约束：推荐的行动必须是最优的
     for t_rep_idx in range(len(ctx.Theta)):
         for a_rec_idx, a_rec in enumerate(ctx.A):
-            # 收费b时的听话约束
             util_obedient_b = sum(z[t_rep_idx, 0, a_rec_idx, w_idx] * ctx.u(ctx.Omega[w_idx], a_rec) 
                                  for w_idx in range(len(ctx.Omega)))
-            # 返还M时的听话约束
             util_obedient_m = sum(z[t_rep_idx, 1, a_rec_idx, w_idx] * ctx.u(ctx.Omega[w_idx], a_rec) 
                                  for w_idx in range(len(ctx.Omega)))
             
@@ -159,12 +148,10 @@ def solve_cm_probr_corrected(ctx):
                                         for w_idx in range(len(ctx.Omega)))
                     constraints.append(util_obedient_m >= util_deviate_m)
 
-    # 计算净效用矩阵
     U_net = [[None for _ in ctx.Theta] for _ in ctx.Theta]
 
     for t_true_idx in range(len(ctx.Theta)):
         for t_rep_idx in range(len(ctx.Theta)):
-            # 收费b时的期望效用
             expected_gross_util_b = sum(z[t_rep_idx, 0, a_idx, w_idx] * ctx.u(ctx.Omega[w_idx], ctx.A[a_idx])
                                        for a_idx in range(len(ctx.A))
                                        for w_idx in range(len(ctx.Omega))
@@ -175,7 +162,6 @@ def solve_cm_probr_corrected(ctx):
                                     for w_idx in range(len(ctx.Omega))
                                     if ctx.mu_joint[t_true_idx, w_idx] > 0)
 
-            # 返还M时的期望效用
             expected_gross_util_m = sum(z[t_rep_idx, 1, a_idx, w_idx] * ctx.u(ctx.Omega[w_idx], ctx.A[a_idx])
                                        for a_idx in range(len(ctx.A))
                                        for w_idx in range(len(ctx.Omega))
@@ -186,7 +172,6 @@ def solve_cm_probr_corrected(ctx):
                                     for w_idx in range(len(ctx.Omega))
                                     if ctx.mu_joint[t_true_idx, w_idx] > 0)
 
-            # 归一化为净效用
             mu_t_true = ctx.mu_theta[t_true_idx]
             if mu_t_true > 1e-9:
                 U_net[t_true_idx][t_rep_idx] = ((expected_gross_util_b + expected_gross_util_m - 
@@ -194,24 +179,20 @@ def solve_cm_probr_corrected(ctx):
             else:
                 U_net[t_true_idx][t_rep_idx] = 0
 
-    # IC和IR约束
     for t_true_idx in range(len(ctx.Theta)):
-        # 计算保留效用（基于先验的最优决策）
+
         u_prior = -np.inf
         prior_dist = ctx.mu_cond_w_given_t[t_true_idx, :]
         for a_idx, a in enumerate(ctx.A):
             util = sum(prior_dist[w_idx] * ctx.u(ctx.Omega[w_idx], a) for w_idx in range(len(ctx.Omega)))
             u_prior = max(u_prior, util)
-        
-        # IR约束：参与不劣于不参与
+
         constraints.append(U_net[t_true_idx][t_true_idx] >= u_prior)
 
-        # IC约束：如实报告不劣于谎报
         for t_rep_idx in range(len(ctx.Theta)):
             if t_true_idx != t_rep_idx:
                 constraints.append(U_net[t_true_idx][t_true_idx] >= U_net[t_true_idx][t_rep_idx])
 
-    # 求解线性规划
     problem = cp.Problem(objective, constraints)
     problem.solve(solver=cp.SCS, verbose=False)
 
