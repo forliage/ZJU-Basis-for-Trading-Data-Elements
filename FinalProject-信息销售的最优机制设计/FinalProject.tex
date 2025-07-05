@@ -1,0 +1,604 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[scheme=plain]{ctex}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+
+% --- 基本设置 ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{microtype}
+\usepackage{lmodern}
+\usepackage{ragged2e}
+
+% 字体设置 (如果使用 XeLaTeX 或 LuaLaTeX)
+\usepackage{ifxetex,ifluatex}
+\newif\ifxetexorluatex
+\ifxetex
+  \xetexorluatextrue
+\else
+  \ifluatex
+    \xetexorluatextrue
+  \else
+    \xetexorluatexfalse
+  \fi
+\fi
+
+\ifxetexorluatex
+  \usepackage{fontspec}
+  % 使用更圆润的等宽字体
+  \setmonofont{Source Code Pro}[  % 需要安装此字体或改用 DejaVu Sans Mono
+    Scale=1.05,
+    Ligatures=TeX
+  ]
+\fi
+
+% --- 数学公式 ---
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{bm}
+
+% --- 页面布局 ---
+\usepackage[left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm, showframe=false]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.5em}
+
+% --- 颜色定义 ---
+\usepackage{xcolor}
+\definecolor{mydarkblue}{RGB}{25, 80, 155}
+\definecolor{mymiddleblue}{RGB}{60, 120, 180}
+\definecolor{mylightblue}{RGB}{100, 160, 200}
+\definecolor{myorange}{RGB}{210, 120, 50}
+\definecolor{myverylightblue}{RGB}{245, 245, 250}
+\definecolor{mytextgray}{RGB}{60, 60, 70}
+\definecolor{codegray}{RGB}{100, 100, 100}
+
+
+
+% --- 多语言代码配色方案 (改进版) ---
+
+% 通用基础色
+\colorlet{codebase}{black}  % 基础文本颜色
+\colorlet{codegray}{gray!70} % 行号等辅助元素
+
+% C/C++
+\colorlet{cppkeyword}{blue!70!black}       % 关键字
+\colorlet{cppcomment}{green!60!black}      % 注释
+\colorlet{cppstring}{red!80!black}         % 字符串
+\colorlet{cppnumber}{magenta!80!black}     % 数字
+\colorlet{cpppreprocessor}{orange!80!black}  % 预处理器指令
+
+% Python
+\colorlet{pythonkeyword}{blue!70!black}
+\colorlet{pythoncomment}{green!60!black}
+\colorlet{pythonstring}{orange!80!red}   % 更醒目的字符串
+\colorlet{pythonnumber}{magenta!70!black}
+\colorlet{pythondecorator}{cyan!80!black}
+
+% SQL
+\colorlet{sqlkeyword}{blue!80!black}    % 深蓝色关键字，更醒目
+\colorlet{sqlcomment}{gray!60}        % 灰色注释
+\colorlet{sqlstring}{purple!70!black}  % 紫色字符串
+\colorlet{sqlnumber}{magenta!70!black}
+
+% Verilog
+\colorlet{verilogkeyword}{teal!80!black}  % 青色关键字
+\colorlet{verilogcomment}{gray!60}
+\colorlet{verilogstring}{brown!70!black} % 棕色字符串
+\colorlet{verilognumber}{magenta!70!black}
+
+% Java
+\colorlet{javakeyword}{purple!80!black}   % 紫色关键字
+\colorlet{javacomment}{green!60!black}
+\colorlet{javastring}{brown!70!black}
+\colorlet{javanumber}{magenta!70!black}
+\colorlet{javaannotation}{teal!70!black}
+
+% JavaScript
+\colorlet{jskeyword}{blue!70!black}
+\colorlet{jscomment}{green!60!black}
+\colorlet{jsstring}{orange!70!black}     % 橙色字符串
+\colorlet{jsnumber}{magenta!70!black}
+\colorlet{jsregexp}{red!70!black}      % 正则表达式
+
+% TypeScript
+\colorlet{tskeyword}{blue!70!black}
+\colorlet{tscomment}{green!60!black}
+\colorlet{tsstring}{orange!70!black}
+\colorlet{tsnumber}{magenta!70!black}
+\colorlet{tstype}{teal!80!black}        % 类型
+
+% Go
+\colorlet{gokeyword}{orange!90!black}    % 橙色关键字，突出
+\colorlet{gocomment}{gray!60}
+\colorlet{gostring}{purple!70!black}
+\colorlet{gonumber}{magenta!70!black}
+\colorlet{gopackage}{blue!70!black}       % 包名
+
+
+% --- 标题样式 ---
+\usepackage{titling}
+\pretitle{\begin{center}\LARGE\bfseries\color{mydarkblue}}
+\posttitle{\par\end{center}\vspace{0.5em}}
+\preauthor{\begin{center}\large\color{mymiddleblue}}
+\postauthor{\par\end{center}\vspace{0.5em}}
+\predate{\begin{center}\large\color{mymiddleblue}}
+\postdate{\par\end{center}}
+
+% --- 章节标题 ---
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{mydarkblue}}
+  {\thesection}
+  {0.5em}
+  {}
+\titlespacing*{\section}{0pt}{2.5ex}{1.5ex}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{myorange}}
+  {\thesubsection}
+  {0.5em}
+  {}
+\titlespacing*{\subsection}{0pt}{1.8ex}{1.2ex}
+
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries\color{myorange}}
+  {\thesubsubsection}
+  {0.5em}
+  {}
+\titlespacing*{\subsubsection}{0pt}{1.5ex}{1ex}
+
+% --- 图表 ---
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{caption}
+\captionsetup{
+  font=small,
+  labelfont={bf, color=mydarkblue},
+  format=hang,
+  width=.9\textwidth,
+  labelsep=period
+}
+
+% --- 表格 ---
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\newcolumntype{L}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{C}{>{\Centering\arraybackslash}X}
+\newcolumntype{R}{>{\RaggedLeft\arraybackslash}X}
+
+% --- 代码 ---
+\usepackage{listings}
+
+% 基本代码样式
+\lstdefinestyle{basecodestyle}{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    numbers=left,
+    numberstyle=\tiny\color{codegray},
+    frame=shadowbox,
+    framesep=6pt,
+    rulesep=4pt,
+    %shadowcolor={gray!20},
+    xleftmargin=1.8em,
+    showstringspaces=false,
+    captionpos=b,
+    aboveskip=1em,
+    belowskip=1em,
+    tabsize=4,
+    showtabs=false,
+    frameround=tttt,
+    backgroundcolor=\color{myverylightblue!20}, % 浅色背景
+}
+
+% C/C++ 样式
+\lstdefinestyle{cppstyle}{
+    style=basecodestyle,
+    language=C++,
+    keywordstyle=\color{cppkeyword},
+    commentstyle=\color{cppcomment},
+    stringstyle=\color{cppstring},
+    numberstyle=\tiny\color{cppnumber},
+    identifierstyle=\color{black},
+    morekeywords={alignas, alignof, and, and_eq, asm, atomic_cancel, atomic_commit, atomic_noexcept, bitand, bitor, break, case, catch, char, char8_t, char16_t, char32_t, class, compl, concept, const, consteval, constexpr, constinit, const_cast, continue, co_await, co_return, co_yield, decltype, default, delete, do, dynamic_cast, else, enum, explicit, export, extern, false, final, for, friend, goto, if, inline, mutable, namespace, new, noexcept, not, not_eq, nullptr, operator, or, or_eq, override, private, protected, public, register, reinterpret_cast, requires, return, sizeof, static, static_assert, static_cast, struct, switch, synchronized, template, this, thread_local, throw, true, try, typedef, typeid, typename, union, using, virtual, volatile, while, xor, xor_eq},
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+    morestring=[b]',
+    rulecolor=\color{cppkeyword!50!black},
+    literate=*%
+        {=}{{\textcolor{cppkeyword}{=}}}{1}
+        {-}{{\textcolor{cppkeyword}{-}}}{1}
+        {+}{{\textcolor{cppkeyword}{+}}}{1}
+        {*}{{\textcolor{cppkeyword}{*}}}{1}
+        {/}{{\textcolor{cppkeyword}{/}}}{1}
+        {<}{{\textcolor{cppkeyword}{<}}}{1}
+        {>}{{\textcolor{cppkeyword}{>}}}{1}
+     ,
+     prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+     postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookrightarrow}},
+}
+
+% Python 样式
+\lstdefinestyle{pythonstyle}{
+    style=basecodestyle,
+    language=Python,
+    keywordstyle=\color{pythonkeyword},
+    commentstyle=\color{pythoncomment},
+    stringstyle=\color{pythonstring},
+    numberstyle=\tiny\color{pythonnumber},
+    identifierstyle=\color{black},
+    morekeywords={and, as, assert, async, await, break, class, continue, def, del, elif, else, except, False, finally, for, from, global, if, import, in, is, lambda, None, nonlocal, not, or, pass, raise, return, True, try, while, with, yield},
+    morecomment=[l]{\#},
+    morestring=[b]",
+    morestring=[b]',
+    morestring=[b]""",
+    rulecolor=\color{pythonkeyword!50!black},
+    literate=*%
+        {=}{{\textcolor{pythonkeyword}{=}}}{1}
+        {-}{{\textcolor{pythonkeyword}{-}}}{1}
+        {+}{{\textcolor{pythonkeyword}{+}}}{1}
+        {*}{{\textcolor{pythonkeyword}{*}}}{1}
+        {/}{{\textcolor{pythonkeyword}{/}}}{1}
+     ,
+}
+
+% SQL 样式
+\lstdefinestyle{sqlstyle}{
+    style=basecodestyle,
+    language=SQL,
+    keywordstyle=\color{sqlkeyword}\bfseries,
+    commentstyle=\color{sqlcomment},
+    stringstyle=\color{sqlstring},
+    numberstyle=\tiny\color{sqlnumber},
+    identifierstyle=\color{black},
+    morekeywords={SELECT, FROM, WHERE, AND, OR, NOT, INSERT, INTO, VALUES, UPDATE, SET, DELETE, CREATE, TABLE, ALTER, DROP, INDEX, VIEW, PROCEDURE, FUNCTION, TRIGGER, PRIMARY, KEY, FOREIGN, CHECK, DEFAULT, NULL, UNIQUE, JOIN, LEFT, RIGHT, INNER, OUTER, ON, GROUP, BY, HAVING, ORDER, ASC, DESC, LIMIT, OFFSET},
+    morecomment=[l]--,
+    morecomment=[s]{/*}{*/},
+    morestring=[b]',
+    morestring=[b]`,
+      rulecolor=\color{sqlkeyword!50!black},
+}
+
+% Verilog 样式
+\lstdefinestyle{verilogstyle}{
+    style=basecodestyle,
+    language=Verilog,
+    keywordstyle=\color{verilogkeyword},
+    commentstyle=\color{verilogcomment},
+    stringstyle=\color{verilogstring},
+    numberstyle=\tiny\color{verilognumber},
+    identifierstyle=\color{black},
+    morekeywords={always, and, assign, begin, buf, bufif0, bufif1, case, casex, casez, cmos, deassign, default, defparam, disable, edge, else, end, endcase, endfunction, endmodule, endspecify, endtable, endtask, event, for, force, forever, fork, function, highz0, highz1, if, ifnone, initial, inout, input, integer, join, large, medium, module, nand, negedge, nmos, nor, not, notif0, notif1, or, output, parameter, pmos, posedge, pull0, pull1, pulldown, pullup, rcmos, real, realtime, reg, release, repeat, rnmos, rpmos, rtran, rtranif0, rtranif1, scalared, small, specify, specparam, strength, strong0, strong1, supply0, supply1, table, task, time, tran, tranif0, tranif1, tri, tri0, tri1, triand, trior, trireg, vectored, wait, wand, weak0, weak1, while, wire, wor, xnor, xor},
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    rulecolor=\color{verilogkeyword!50!black},
+}
+
+% Java 样式
+\lstdefinestyle{javastyle}{
+    style=basecodestyle,
+    language=Java,
+    keywordstyle=\color{javakeyword},
+    commentstyle=\color{javacomment},
+    stringstyle=\color{javastring},
+    numberstyle=\tiny\color{javanumber},
+    identifierstyle=\color{black},
+    morekeywords={abstract, assert, boolean, break, byte, case, catch, char, class, const, continue, default, do, double, else, enum, extends, final, finally, float, for, goto, if, implements, import, instanceof, int, interface, long, native, new, package, private, protected, public, return, short, static, strictfp, super, switch, synchronized, this, throw, throws, transient, try, void, volatile, while},
+     morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+    rulecolor=\color{javakeyword!50!black},
+}
+
+% JavaScript 样式
+\lstdefinestyle{jsstyle}{
+    style=basecodestyle,
+    language=JavaScript,
+    keywordstyle=\color{jskeyword},
+    commentstyle=\color{jscomment},
+    stringstyle=\color{jsstring},
+    numberstyle=\tiny\color{jsnumber},
+    identifierstyle=\color{black},
+    morekeywords={break, case, catch, class, const, continue, debugger, default, delete, do, else, export, extends, finally, for, function, if, import, in, instanceof, new, return, super, switch, this, throw, try, typeof, var, void, while, with, yield, async, await, static, let, of},
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+    morestring=[b]',
+    morestring=[b]` ,
+    rulecolor=\color{jskeyword!50!black},
+}
+% TypeScript 样式
+\lstdefinestyle{tsstyle}{
+    style=basecodestyle,
+    language={[ECMAScript]JavaScript},
+     keywordstyle=\color{tskeyword},
+    commentstyle=\color{tscomment},
+    stringstyle=\color{tsstring},
+    numberstyle=\tiny\color{tsnumber},
+   identifierstyle=\color{black},
+    morekeywords={abstract, as, async, await, break, case, catch, class, const, constructor, continue, debugger, declare, default, delete, do, else, enum, export, extends, false, finally, for, from, function, get, if, implements, import, in, infer, instanceof, interface, is, keyof, let, module, namespace, new, null, of, package, private, protected, public, readonly, require, return, set, static, super, switch, symbol, this, throw, true, try, type, typeof, var, void, while, with, yield, any, unknown, never, object, boolean, string, number, undefined, symbol},
+     morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+    morestring=[b]',
+    morestring=[b]` ,
+    rulecolor=\color{tskeyword!50!black},
+}
+
+% Go 样式
+\lstdefinestyle{gostyle}{
+    style=basecodestyle,
+    language=Go,
+    keywordstyle=\color{gokeyword},
+    commentstyle=\color{gocomment},
+    stringstyle=\color{gostring},
+    numberstyle=\tiny\color{gonumber},
+    identifierstyle=\color{black},
+    morekeywords={break, default, func, interface, select, case, defer, go, map, struct, chan, else, goto, package, switch, const, fallthrough, if, range, type, continue, for, import, return, var},
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+    morestring=[b]',
+    morestring=[b]` ,
+    rulecolor=\color{gokeyword!50!black},
+}
+
+% 默认使用 C++ 样式，如果需要其他语言，请在 lstlisting 环境中指定 language 选项
+%\lstset{style=cppstyle}
+
+
+% --- 超链接 ---
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=myorange,
+    citecolor=myorange,
+    urlcolor=myorange,
+}
+
+% --- 其他 ---
+\usepackage{enumitem}
+\setlist{noitemsep}
+\usepackage{fancyhdr}
+\usepackage{cite}
+\usepackage{lipsum}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, calc}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+\usepackage{pifont}
+\usepackage{eso-pic}
+\usepackage{subfiles} %子页
+\usepackage{indentfirst}%%%%%%%%%%%%%设置首行缩进！！！
+
+% --- 新版页眉页脚 ---
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% 左侧页眉
+\fancyhead[L]{%
+    \begin{tikzpicture}[overlay, remember picture]
+        \node[anchor=west, text=mydarkblue, font=\small\bfseries]
+            at ($(current page.north west)+(2cm,-0.25)$) {\leftmark};
+        \draw[mydarkblue, line width=1.5pt]
+            ($(current page.north west)+(0,-0.5)$) -- ++(\textwidth,0);
+    \end{tikzpicture}
+}
+
+% 右侧页脚
+\fancyfoot[R]{%
+    \begin{tikzpicture}[overlay, remember picture]
+        \node[anchor=east, text=mymiddleblue, font=\small\bfseries]
+            at ($(current page.south east)+(-2cm,0.3)$) {Page \thepage};
+        \draw[mymiddleblue, line width=1.5pt]
+            ($(current page.south east)+(0,0.5)$) -- ++(-\textwidth,0);
+    \end{tikzpicture}
+}
+
+% --- 定义环境 ---
+\newenvironment{mybox}[1]
+{\begin{tcolorbox}[
+    enhanced,
+    colback=myverylightblue!50,
+    colframe=mydarkblue,
+    title=#1,
+    fonttitle=\bfseries\color{mydarkblue},
+    colbacktitle=myverylightblue,
+    arc=8pt,
+    auto outer arc,
+    boxrule=1.5pt,
+    top=6pt,
+    bottom=6pt,
+    left=8pt,
+    right=8pt,
+    attach boxed title to top center={yshift=-4mm, xshift=0mm},
+    drop shadow=black!30
+    ]
+}{\end{tcolorbox}}
+
+
+\newenvironment{importantbox}
+    {\begin{tcolorbox}[
+        enhanced,
+        colback=red!5,
+        colframe=red!70!black,
+        arc=4pt,
+        auto outer arc,
+        leftrule=5pt,
+        toprule=1pt,
+        bottomrule=1pt,
+        rightrule=1pt,
+        title=\textbf{Important},
+        fonttitle=\bfseries\color{white}
+    ]}
+    {\end{tcolorbox}}
+
+% --- 文档信息 ---
+\title{Modern Report Template}
+\author{Your Name}
+\date{\today}
+
+% --- 封面 ---
+\newcommand{\mycoverpage}{
+    \begin{titlepage}
+       \AddToShipoutPictureBG*{
+            \begin{tikzpicture}[overlay, remember picture]
+                % 左上角圆角
+                \begin{scope}
+                  \clip (current page.north west) rectangle ++(5,-5);
+                  \fill[mydarkblue!20] (current page.north west) circle (5cm);
+                \end{scope}
+
+                % 右下角圆角
+                \begin{scope}
+                   \clip (current page.south east) rectangle ++(-5,5);
+                   \fill[myorange!20] (current page.south east) circle (5cm);
+                \end{scope}
+
+                 % 顶部波浪线
+                \draw[myorange, line width=2.5pt]
+                    ([xshift=-3cm]current page.north) to[out=0, in=180] ([xshift=3cm]current page.north);
+                 % 底部曲线
+                \draw[mymiddleblue, line width=2pt]
+                   ([xshift=-1cm, yshift=1cm]current page.south west) to[out=45, in=135] ([xshift=1cm,yshift=1cm]current page.south east);
+
+            \end{tikzpicture}
+        }
+        \begin{center}
+           \vspace*{1cm}
+             %顶部装饰
+           \begin{tikzpicture}
+                \fill[mymiddleblue] (0,0) rectangle (\textwidth,0.6cm);
+                \fill[mydarkblue] (0,0.6cm) rectangle (\textwidth,0.8cm);
+            \end{tikzpicture}
+
+            \vspace{0.8cm}
+            {\Huge\bfseries\color{mydarkblue} 信息销售的最优机制设计 \par}
+            \vspace{0.5cm}
+            \vspace{0.8cm}
+            %顶部装饰线
+            \begin{tikzpicture}
+                \draw[myorange, line width=2pt]
+                (0,0)--(\textwidth,0);
+            \end{tikzpicture}
+
+            \vspace{1.5cm}
+
+            {\Large\bfseries\color{myorange} 数据要素处理基础\par}
+
+            \vspace{1.5cm}
+             \begin{tcolorbox}[
+                enhanced,
+                colback=white,
+                colframe=mydarkblue,
+                arc=15pt,
+                auto outer arc,
+                boxrule=1pt,
+                top=8pt,
+                bottom=8pt,
+                left=10pt,
+                right=10pt,
+                width=0.7\textwidth,
+                drop shadow={black!40!white}
+                ]
+            %作者信息
+            \begin{tabular}{rl}
+                \textbf{\color{mydarkblue}Author:} & \color{mytextgray}赵柳烨 3230106038\\[8pt]
+                \textbf{\color{mydarkblue}Author:} & \color{mytextgray}梁兆康 3230102230\\[8pt]
+                \textbf{\color{mydarkblue}Date:} & \color{mytextgray}\today \\[8pt]
+                \textbf{\color{mydarkblue}College:} & \color{mytextgray}计算机科学与技术学院 \\[8pt]
+            \end{tabular}
+             \end{tcolorbox}
+
+             \vspace{1.2cm}
+
+             %学校logo（已移除边框）
+            \begin{tikzpicture}
+               \node[inner sep=0pt] (logo) {\includegraphics[width=0.5\textwidth]{logo.jpg}};
+            \end{tikzpicture}
+
+            \vfill
+            %底部装饰
+            \begin{tikzpicture}
+                \fill[myorange] (0,0) rectangle (4cm,0.4cm);
+                \fill[mylightblue] (4cm,0) rectangle (8cm,0.4cm);
+                 \fill[mydarkblue](8cm,0)rectangle(\textwidth,0.4cm);
+                   \fill[mymiddleblue](0cm,0.4cm)rectangle(\textwidth,0.6cm);
+
+            \end{tikzpicture}
+        \end{center}
+    \end{titlepage}
+    \setcounter{page}{0}
+    \thispagestyle{empty}
+}
+
+% --- 现代化目录 ---
+\usepackage{titletoc}
+
+% 主目录样式
+\titlecontents{section}
+  [0em]
+  {\vspace{0.5em}\large\bfseries\color{mydarkblue}}
+  {\contentslabel{2.3em}}
+  {\hspace*{-2.3em}}
+  {\titlerule*[0.8pc]{.}\contentspage[\hspace{0.5em}]}
+
+% 子目录样式 (灰阶)
+\titlecontents{subsection}
+  [3.8em]
+  {\vspace{0.2em}\footnotesize\color{gray!80}}
+  {\contentslabel{2.3em}}
+  {\hspace*{-2.3em}}
+  {\titlerule*[0.5pc]{.}\contentspage}
+
+\titlecontents{subsubsection}
+  [6.1em]
+  {\vspace{0.1em}\footnotesize\color{gray!60}}
+  {\contentslabel{2.6em}}
+  {\hspace*{-2.6em}}
+  {\titlerule*[0.3pc]{.}\contentspage}
+
+
+% --- 文档开始 ---
+\begin{document}
+
+\mycoverpage
+
+\noindent
+% Abstract 标题
+{\noindent\centering\bfseries\color{mydarkblue}\Huge Abstract\par\vspace{1em}}
+
+\begin{mybox}{}  % 使用 mybox，但不提供标题
+  在数字经济时代，信息已成为一种核心商品，其价值由买方在决策前难以准确评估，且一旦泄露便难以回收，导致传统商品销售机制难以直接套用。本项目针对单一卖方向单一买方销售信息的场景，建立了一个包含世界状态ω、卖方私有信号及买方私有类型θ和效用函数的博弈论模型，揭示了信息销售中“价格泄露信息”和“承诺不足导致买方跑单”等关键难点。首先，运用通用交互协议和显示原理，将复杂多轮机制等价化为直接显示机制，简化了设计空间；在买卖双方信号独立的情况下，进一步证明了单轮定价映射机制的最优性，并通过线性规划精确刻画了最优合约菜单。其次，引入买方预算约束，提出了“存款返还”咨询机制，有效解决了非承诺买方的跑路问题，并通过构造性证明和数值示例展示了该机制在多种信号相关情形下的最优性及可计算性。最后，本项目结合Python实现了线性规划求解与仿真实验，通过案例分析验证了所提机制的收益优势与鲁棒性。本研究不仅为信息市场机制设计提供了理论框架和算法工具，还为后续多买方、多卖方、多信号拓展奠定了基础。  
+\end{mybox}
+
+\newpage
+
+\tableofcontents
+\newpage
+
+\subfile{part1.tex}
+
+\subfile{part2.tex}
+
+\subfile{part3.tex}
+
+\subfile{part4.tex}
+
+\subfile{part5.tex}
+
+\subfile{part6.tex}
+
+\subfile{part7.tex}
+
+\end{document}
