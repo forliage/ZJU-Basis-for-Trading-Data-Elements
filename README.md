@@ -12,7 +12,7 @@
 - Lec6 note: finished
 - Lec7 note: finished
 - Lec8 note: finished
-- Lec9 note: todo
+- Lec9 note: finished
 - Lec10 note: todo
 
 - hw1: finished
