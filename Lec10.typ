@@ -292,13 +292,47 @@ $ bb(P) (s) = sum_(omega^prime in Omega) pi(s| omega^prime) mu_0 (omega^prime) $
 所以所有$s$将导致一个后验概率分布的分布$tau in Delta(Delta(Omega))$，其中概率分布支撑为 $"Supp" (tau) = {mu_s}_(s in S)$，支撑中每一个后验概率$mu in Delta(Omega)$的概率为：
 $ tau (mu) = sum_(s: mu_s = mu) bb(P) (s) = sum_(s:mu_s = mu) sum_(omega^prime in Omega) pi (s | omega^prime) mu_0 (omega^prime) $
 如果每个后验概率都不同，则支撑中每一个后验概率$mu in Delta(Omega)$的概率为：
-$  $
+$ tau(mu) = bb(P)(s) = sum_(omega^prime in Omega) pi(s| omega^prime) mu_0 (omega^prime) $
 例如，回忆导师写推荐信的例子，在最优机制下，信号机制导致的两个后验概率分布分别为
-$  $
+$ mu_e ("excellent") = 1/3, mu_e ("average") = 2/3 $
 和
-$  $
+$ mu_a ("excellent") = 0, mu_a ("average") = 1 $
 这两个后验概率分布不相同，因此$"Supp"(tau)={mu_e,mu_a}$，二者概率为
-$  $
-$  $
+$ bb(P) (e) = pi(e | "excellent") mu_0 ("excellent") + pi(e | "average") mu_0 ("average") = 0.75 $
+$ bb(P) (a) = pi (a | "excellent") mu_0 ("excellent") + pi (a | "average") mu_0 ("average") = 0.25 $
+
+基于上述记号，可以给出贝叶斯可行的定义：
+
+定义：称$tau$由信号导致，如果存在信号机制$(S, pi(s | omega))$对应的后验概率分布的分布为$tau$。称一个后验概率分布的分布$tau$是贝叶斯可行的，如果
+$ sum_("Supp"(tau)) mu tau(mu) = mu_0 $
+即后验概率的期望等于先验概率。
+
+再次强调，这里不同的后验概率分布可以求和的原因在于，本质上不同的后验概率分布都是$Omega$上的概率分布。例如可以检查导师写推荐信的例子是否满足贝叶斯可行性：
+$ tau (mu_e) dot mu_e ("excellent") + tau (mu_e) dot mu_a ("excellent") = 0.25 = mu_0 ("excellent") $
+$ tau (mu_e) dot mu_e ("average") + tau (mu_a) dot mu_a ("average") = 0.75 = mu_0 ("average") $
+
+事实上，导师写推荐信的例子满足贝叶斯可行性并非偶然：只要$tau$是信号机制导致的，信号机制必然贝叶斯可行：对任意的$omega in Omega$有
+$
+sum_("Supp"(tau)) mu(omega) tau(mu) &= sum_(s in S) mu_s (omega) bb(P) (s) \
+                         &= sum_(s in S) (pi (s | omega) mu_0 (omega))/(sum_(omega^prime in Omega) pi (s | omega^prime) mu_0 (omega^prime)) bb(P) (s) \
+                         &= sum_(s in S) pi (s | omega) mu_0 (omega) = mu_0 (omega)
+$
+
+=== 4.问题转化
+
+由此可知，一个信号机制可以导致一个贝叶斯可行的后验概率分布的分布。反之，一个贝叶斯可行的后验概率分布的分布$tau$是否一定对应一个信号机制呢？答案是肯定的：
+
+定理：一个后验概率分布的分布$tau in Delta(Delta(Omega))$是贝叶斯可行的当且仅当存在一个信号机制$(S,pi(s | omega))$使得$tau$是由该信号机制导致的。
+
+证明: “当”的部分上页已经说明，“仅当”部分的证明需要从$tau$构造出信号机制$(S, pi (s|omega))$。根据$bb(P) (s) mu_s (omega) = pi (s|omega) mu_0 (omega)$自然地可以写出这一构造：定义$S= "Supp" (tau)$，且对任意的$s in S$，定义
+$ pi (s | omega) = (tau (mu_s) mu_s (omega))/(mu_0 (omega)) $
+不难验证这的确构造出了一个合理的信号机制。
+
+- 因此，一个信号机制等价于一个贝叶斯可行的后验概率分布的分布；
+   - 进而可以导致接收者行动的分布，因为一个后验概率分布就对应接收者的一个最优行动；
+   - 显然，只要接收者行动分布一定，那么发送者的效用也是确定的；
+- 因此是否存在一个信号机制使得发送者达到效用$v^ast$，只需要考虑是否存在一个贝叶斯可行的后验概率分布的分布$tau$使得发送者效用达到$v^ast$；
+- 因此设计最优信号机制的问题可以转化为设计一个贝叶斯可行的后验概
+率分布的分布$tau$使得接收者的效用最大化。
 
 == 三、最优信号机制 
