@@ -314,3 +314,30 @@ $ "OPT" = max_("单调、次可加的"f) R(f) $
 其中$R(f) = sum_(i: v_i >= f(e_i)) f(e_i)$，即在集合函数$f$下价格小于等于买家估值的价格之和
 
 == 四、机器学习模型的版本化与无套利定价
+
+#figure(
+  image("/images/image27.png", width: 80%),
+) <fig:fig27>
+
+数据拥有者: 关心隐私保护程度和收益分配的公平性
+- 用$epsilon$-differential privacy来量化Data owners的隐私泄露风险
+- 用一个单调增的compensation function $c_i$ 来建模data owner $D_i$ 对参与训练的、满足$epsilon$-differential privacy的机器学习模型（数据产品）要求的compensation。
+
+#figure(
+  image("/images/image28.png", width: 80%),
+) <fig:fig28>
+
+模型购买者: 关心最终模型（数据产品）的效用
+
+如何估计模型的最终效用？
+
+- 用参与训练数据的Shapley value覆盖率CR 
+   $ C R (M) = C R (D_(i_1),...,D_(i_k)) = (S V ({D_(i_1),...,D_(i_k)}))/(S V ({D_1,...,D_n})) = (S V ({D_(i_1),...,D_(i_k)}))/(U({D_1,...,D_n})) $
+- 为了满足differential privacy所添加的噪声，用Privacy Budget来量化$epsilon$
+   $ P (B_j, M) = V_j dot 1/(1 + e^(- delta_j (C R (M) - theta_j))) dot 1/(1 + e^( - gamma_j (epsilon - eta_j))) $
+
+给定一组data owners，一组model buyers，和模型版本数量$l$，中间商需要合理划分$l$个模型版本使得收入最大化的同时兼顾以下几点：
++ 做到公平分配compensation激励data owners参与模型市场
++ 不同模型版本定价公平，实现无套利
++ 模型（数据产品）生产开销最小化，i.e.，充分利用给定compensation，模型效用最大化
++ 考虑一个非盈利导向的broker，以促进数据市场发展与社会福利为目的，在最大化收入的同时最大化模型效用，模型收入直接分配为data owner的compensation
