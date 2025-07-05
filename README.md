@@ -43,7 +43,7 @@
 
 可以参考课程网站：[https://yhwu-is.github.io/Teach/ec/data_market/2025/](https://yhwu-is.github.io/Teach/ec/data_market/2025/)
 
-## II. 课程讲义 (Lecture Notes)
+## II. 课程笔记 (Lecture Notes)
 
 以下是各讲的Lecture Note 以及Abstract (Abstract部分由ChatGPT-o4 mini-high生成)。
 
