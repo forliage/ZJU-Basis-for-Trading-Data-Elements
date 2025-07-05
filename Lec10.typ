@@ -336,3 +336,118 @@ $ pi (s | omega) = (tau (mu_s) mu_s (omega))/(mu_0 (omega)) $
 率分布的分布$tau$使得接收者的效用最大化。
 
 == 三、最优信号机制 
+
+=== 1.最优信号机制问题
+
+问题转化后，我们需要解决的问题是设计一个贝叶斯可行的后验概率分布的分布$tau$使得发送者的效用最大化。首先将问题形式化：记后验概率为$mu$时，接收者的最优行动为 $hat(a) (mu)$，则发送者的期望效用为
+$ hat(v) (mu) = bb(E)_(mu) v (hat(a) (mu), omega) $
+此处求期望是考虑到一般的情况下$v$的表达式为$v(a,omega)$，因此需要针对$omega$求期望。而在导师写推荐信的例子中，因为$v$与$omega$无关，故是可以省略的。基于此，可以定义最优信号机制问题：
+$ max_(tau) bb(E)_(tau) hat(v) (mu) $
+$ "s.t. " sum_("Supp"(tau)) mu tau (mu) = mu_0 $
+
+=== 2.显示原理
+
+然而问题在转化到最优后验概率设计后，设计空间仍然非常大：
+- 我们甚至不知道后验概率分布的分布$tau$的支撑集大小（也就是信号实现空间$S$的大小）应该是多少；
+   - 例如导师写推荐信的例子，或许导师可以写三类甚至更多类推荐信，设计更复杂的信号机制，从而获得更高的期望效用；
+- 然而可以思考，一个后验概率分布会对应于一个接收者的最优行动，而接收者的最优行动决定发送者的效用，因此直观来看如果有$|A|$种后验概率（故$|A|$种信号实现）诱导出$|A|$种行动就足够了。
+
+接下来的定理表明这一直观是正确的，这一结论称为贝叶斯劝说的“显示
+原理”，以表示其与机制设计中的显示原理的关联：
+
+- 因此贝叶斯劝说也称为信息设计（information design），信息设计和机制设计都是使他人行动按照自己设想进行的方式，只是信息设计通过改变他人信念实现，而机制设计通过设计激励实现；
+- 这两个显示原理都是缩小信息/机制设计的空间：
+   - 信息设计中的显示原理是一个信号实现对应接收者的一个行动（直观来看就是为接收者推荐了一个行动）；
+   - 机制设计中的显示原理则表明只需设计直接显示机制即可，此时参与人会诚实显示自己的信息。
+
+显示原理：存在一个信号机制使得发送者的效用达到$v^ast$当且仅当存在一个直接（straightforward）信号机制使得发送者的效用达到$v^ast$。其中直接信号机制是指满足$S subset A$并且接收者的最优行动等于信号实现的信号。
+
+- 放在导师写推荐信的例子中，直接信号机制指信号实现空间$S subset {"excellent", "average"}$且当接收者看到优秀的推荐信的信号时雇用，看到一般的推荐信的信号时不雇用的信号；事实上此前给出的最优信号机制的确满足直接信号机制的定义；
+- 总而言之，显示原理表明，最优信号机制设计所需的信号实现数目（后验概率数目）是不超过接收者行动数目的；
+- 定理的证明是简单的：如果有两个信号实现会导致相同的接收者最优行动，将这两个信号实现合并成一个即可，具体证明略去。
+
+=== 3.凹包络
+
+在完成了准备工作后，最后的问题是如何求解最优信号机制。下面我们将介绍一个重要的概念：凹包络。
+
+定义：函数$hat(v)$的凹包络（concave closure）$V$定义为：
+$ V(mu) = sup {z | (mu,z) in co(hat(v))} $
+其中$co(hat(v))$表示函数$hat(v)$的图像的凸包。
+直观而言，一个函数的凹包络就是大于等于这个函数的最小凹函数。
+
+#figure(
+  image("/images/image29.png", width: 80%),
+) <fig:fig29>
+
+=== 4.最优信号机制的解
+
+函数$hat(v)$的凹包络是求解最优信号机制问题的关键：
+- 注意到如果$(mu_0, z) in co(hat(v))$，则必然存在后验概率分布的分布$tau$使得$bb(E)_(tau) mu = mu_0$，且$bb(E)_(tau) hat(v) (mu) = z$（因为期望也是凸组合）；
+- $V(mu_0)$则是所有这样的$z$中的最大值；
+
+因此$V(mu_0)$就是最优信号机制问题的解。总而言之我们可以得到下面的推论，从而回答了之前提出的所有问题：
+
+推论：最优信号机制问题的解存在，最大值为$V(mu_0)$。进一步地，发送者设计信号能提升自己的效用当且仅当$V(mu_0) > hat(v) (mu_0)$。 
+
+=== 5.例：导师写推荐信问题的解
+
+回到导师写推荐信的例子，可以利用前面的结论证明之前给出的解是最优的。首先计算
+$ hat(v) (mu) = bb(E)_(mu) v(hat(a)(mu), omega) = v(hat(a)(mu)) $
+又当$mu("excellent") >= 1/3$时$hat(a) (mu) = "hiring"$，故导师的效用为1；反之$hat(a) (mu) = "not hiring"$，因此可以做出下图，横坐标表示$mu("excellent")$：
+
+#figure(
+  image("/images/image30.png", width: 80%),
+) <fig:fig30>
+
+不难看出$V(mu_0) = 0.75$，因此检察官的最优效用是 0.75，符合之前的计算。并且此时$tau$的支撑集是${mu_e, mu_a}$，其中
+$ mu_e ("excellent") = 1/3, mu_e ("average") = 2/3 $
+$ mu_a ("excellent") = 0, mu_a ("average") = 1 $
+也是符合此前的结果的。进一步可以利用这一后验概率分布的分布计算出对应的信号机制，读者可以自行尝试，也是符合此前的结果的。
+
+=== 5.贝叶斯劝说与线性规划
+
+可以从计算的视角重新看待贝叶斯劝说。已知先验分布$mu_0$，发送者的效用函数$v(a,omega)$和接收者的效用函数$u(a,omega)$。设接收者行动有$n$种，记为${1,2,...,n}$，显示原理表明只需对每个$omega$设计$n$种信号${pi (s_i | omega)}_(i=1)^n$即可，故可以将最优信号机制问题转化为如下线性规划问题：
+$
+ max_(pi(s_i | omega)) sum_(omega in Omega) sum_(i=1)^n pi(s_i | omega) mu_0 (omega) v(i, omega) \
+ "s.t.  " sum_(omega in Omega) pi (s_i | omega) mu_0 (omega) u (i, omega) >= pi (s_i | omega) mu_0 (omega) u (j, omega), forall i,j in [n] \
+ "      " sum_(i=1)^n pi (s_i | omega) = 1, forall omega in Omega \
+ "      " pi(s_i | omega) >= 0, forall s_i in S, omega in Omega
+$
+
+显然，第二条和第三条约束是称为概率分布的必要条件。第一条约束和目标函数需要进一步的解释。
+
+约束的第一条是显示原理的要求，即要求接收者看到$s_i$时最优的行动选择就是$i$。实际上，当接收者看到$s_i$且选择行动$j$时，其期望效用为
+$ sum_(omega in Omega) mu_(s_i) (omega) u(j, omega) = sum_(omega in Omega) (mu_0 (omega) pi (s_i | omega))/(sum_(omega^prime in Omega) mu_0 (omega^prime) pi (s_i | omega^prime)) u(j,omega) $
+因此第一条约束是将不等式两边分母中的相同部分
+$ sum_(omega^prime in Omega) mu_0 (omega^prime) pi (s_i | omega^prime) $
+消去了。事实上，之前介绍的显示原理的作用就在于此。如果没有显示原理，$s_i$数目的不确定性会给线性规划的定义带来很大的困难。
+
+结合显示原理的约束，最大化的目标函数的来源是
+$
+ bb(E)_(r) hat(v)(mu) &= sum_(mu in "Supp"(tau)) tau(mu) dot v(hat(a)(mu),omega) = sum_(i=1)^n bb(P)(s_i) dot v(i, omega) \
+         &= sum_(omega in Omega) sum_(i=1)^n mu_0 (omega) pi (s_i | omega) v(i, omega) 
+$
+
+上述线性规划给予我们的启示是，贝叶斯劝说与迈尔森最优拍卖机制设计类似，本质上都可以写成数学规划问题，但是这两个问题都可以找到特殊结构，从而可以将问题转化为可以给出比较直接的解的问题。并且两个问题的解都非常简洁美观，值得反复品味。
+
+=== 6.贝叶斯劝说对接收者的影响
+
+最后解决第三个问题：信号接收者是否愿意接受发送者的信号机制？
+
+命题：在任意信号机制$S$, $pi(s | omega)$下，接收者的效用都不会低于其在没有信号的情况下的效用。
+
+任取信号机制$S$，$pi(s|omega)$，当接收者看到$s in S$时，其效用为
+$
+max_(a in A) bb(E)_(mu_s) [u(a,omega)] &= max_(a in A) sum_(omega in Omega) mu_s (omega) u(a, omega) \
+                             &= max_(a in A) sum_(omega in Omega) (pi(s|omega) mu_0 (omega))/(sum_(omega^prime in Omega) pi(s|omega^prime) mu_0 (omega^prime)) u(a,omega)
+$
+
+$
+sum_(s in S) bb(P)(s) dot max_(a in A) bb(E)_(mu_s) [u(a,omega)] &= sum_(s in S) (sum_(omega^prime) pi(s|omega^prime) mu_0 (omega^prime)) dot max_(a in A) bb(E)_(mu_s) [u(a,omega)] \
+   &= sum_(s in S) max_(a in A) sum_(omega in Omega) pi(s|omega) mu_0 (omega) u(a,omega) \
+   &>= max_(a in A) sum_(s in S) sum_(omega in Omega) pi(s|omega) mu_0 (omega) u(a,omega) \
+   &= max_(a in A) sum_(omega in Omega) (sum_(s in S) pi(s|omega)) mu_0 (omega) u(a, omega) \
+   &= max_(a in A) sum_(omega in Omega) mu_0 (omega) u(a,omega) = max_(a in A) bb(E)_(mu_0) [u(a,omega)]
+$
+
+由此可知命题成立。事实上这里的讨论与下一章出售信号机制的讨论有关联：基于上述讨论可以计算向数据买家出售信号机制给买家带来的效用，并且上述命题表明这一效用一定是非负的。
