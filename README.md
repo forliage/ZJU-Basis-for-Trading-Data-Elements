@@ -1,6 +1,6 @@
 # ZJU - 数据要素处理基础 (Foundations of Data Element Processing)
 > 浙江大学《课程综合实践II》课程笔记、实验、作业与期末项目总结  
-> (Course notes, labs, homework, and final project for ZJU's "Comprehensive Course Practice II")
+> (Course notes, labs, homework, final project and final exam for ZJU's "Comprehensive Course Practice II")
 
 ---
 
