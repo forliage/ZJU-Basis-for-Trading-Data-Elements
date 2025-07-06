@@ -1,8 +1,8 @@
-PWD f:/ZJU-Basis-for-Trading-Data-Elements/FinalProject
+PWD f:/ZJU-Basis-for-Trading-Data-Elements/FinalProject-信息销售的最优机制设计
 INPUT d:/texlive/2024/texmf.cnf
 INPUT d:/texlive/2024/texmf-dist/web2c/texmf.cnf
 INPUT d:/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT f:/ZJU-Basis-for-Trading-Data-Elements/FinalProject/FinalProject.tex
+INPUT f:/ZJU-Basis-for-Trading-Data-Elements/FinalProject-信息销售的最优机制设计/FinalProject.tex
 OUTPUT FinalProject.log
 INPUT d:/texlive/2024/texmf-dist/tex/latex/base/article.cls
 INPUT d:/texlive/2024/texmf-dist/tex/latex/base/article.cls
