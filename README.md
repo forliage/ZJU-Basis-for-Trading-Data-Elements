@@ -135,6 +135,23 @@
 
 </details>
 
+<details>
+<summary><strong>Lecture 11: The Valuation and Pricing of Information</strong></summary>
+
+> **Abstract:** **Abstract**Lecture 11, “The Valuation and Pricing of Information,” develops a unified framework for understanding how information derives economic value and how a monopolist can optimally price it. In the first part, the **economic foundations** of information value are formalized: the gain from moving decision‐making from a prior distribution $q$ to a posterior $p$ is defined as
+
+> $$
+D_u(p; q) = \mathbb{E}_{\omega\sim p}[u(a^*(p),\omega)] - \mathbb{E}_{\omega\sim p}[u(a^*(q),\omega)],
+$$
+
+> and shown to be a valid measure if and only if it is nonnegative, zero for null signals, and order‐invariant under sequential updates.  A key result establishes that any such measure is the **Bregman divergence** of a concave function, linking information value to widely used divergence measures (e.g., KL divergence or squared Euclidean distance) .
+
+> The second part addresses the **optimal pricing of information** in a basic setting—a single seller with private knowledge of a state $\omega$ and a buyer with type $t$ choosing between an “active” and “passive” action.  By the Revelation Principle, the seller’s mechanism can be reduced to a menu $\{(\pi_t,p_t)\}_{t\in T}$ of experiments and payments.  Remarkably, **threshold experiments**—which reveal only whether a state‐dependent statistic exceeds a type‐specific cutoff—are sufficient for optimality.  Introducing “lower,” “upper,” and mixed virtual value functions $\varphi_\ell,\varphi_u,\varphi_c$, the optimal mechanism is fully characterized: personalized thresholds $\theta^*(t)$ and payment formulas that depend on whether the highest type’s value lies below, above, or between two critical constants $V_L$ and $V_H$ (LSX ’21).  Extensions include a generalized multi‐action model and a **consulting mechanism** with bounded payments that can be computed by convex programming.
+
+> Finally, the lecture concludes with a **summary** of insights—distinguishing raw data from distilled information—and **open problems**, such as pricing noisy or non‐Bayesian signals, aggregating information from multiple sources, and moving “from pricing information to pricing intelligence.”
+
+</details>
+
 ---
 
 ## III. 课程实验 (Lab Assignments)
