@@ -307,6 +307,60 @@ What if seller is restricted to sell the same information to every buyer (e.g., 
 
 === 9.Additional Properties of Optimal Mechanism
 
+*Proposition 1([LSX'21])*:Buyer surplus is increasing for $t in [t_1, overline(t)]$ and decreasing for $t in [overline(t),t_2]$ where $overline(t)$ satisfies $overline(v)(overline(t)) = 0$.
+#figure(
+  image("/images/image34.png", width: 80%),
+) <fig:fig34>
 
+*Prop.2([LSX'21])*:Following properties hold in optimal mechanism.
++ In Case 1, surplus of $t_1$ is 0; In Case 2, surplus of $t_2$ is 0; In Case 3, surplus of both $t_1$ and $t_2$ is 0
++ Buyer payment is increasing in Case 1, decreasing in Case 2, and increase first then decrease in Case 3.
+#figure(
+  image("/images/image35.png", width: 80%),
+) <fig:fig35>
+
+=== 10.A Generalized Model of Selling Information
+- Buyers takes one of $n$ action $i in [n] = {1,...,n}$
+- Buyers has an arbitrary utility function $u(i, omega;t)$
+
+Mechanism design question: How can seller optimally sell her information about $omega$ to the buyer?
+
+=== 11.Existence of Simple "Direct Mechanisms"
+
+*Theorem (Revelation Principle, BBS'18, CXZ'20)*: Any information selling mechanism is "equivalent" to a direct and truthful mechanism:
++ Ask buyer to report type $t$
++ Charge buyer $x_t$ and then directly make obedient action 
+  
+  Recommendation to buyer via a randomized scheme $pi_t : Q->[n]$. Moreover, the mechanism is incentive compatible(IC) --- it is the buyer's best interest to truthfully report $t$.
+
+=== 12.This Optimal Mechanism is like Consulting
+
+Consulting Mechanism w/ Bounded Payment [CXZ'20]
++ Elicit buyer type $t$
++ Charge buyer $x_t <= B$ (bounded payment)
++ Observe realized state $theta$ and recommend action $i$ to the buyer with probability $pi_t (sigma_i, q)$
+
+*Theorem(CXZ'20)*: The optimal payment-limited consulting mechanism can be computed by a convex program.
 
 == III.Summary and Open Problems
+
+=== 1.Summary
+
+- Raw and distilled data (i.e., information) both have economic values
+- The pricing of information depends on its economic value
+- Many recent progresses on pricing mechanisms for information/data
+- But long way to go….
+
+=== 2. Open Direction I 
+
+- What if signals have error (e.g., predictions of ML algorithms)?
+- What if the world is non-Bayesian? Difference between pricing signals vs pricing signal generation processes?
+- How to be robust to uncertainty in information and ML models?
+
+=== 3. Open Direction II 
+Orchestrated information – acquiring information from multiple sources and selling aggregated information
+
+=== 4.Open Directions III
+
+- From pricing information to pricing intelligence
+- What is the most practical/efficient/feasible way to price intelligence? Directly sell raw data, or sell ML model, or sell inferences? Or personalized?
