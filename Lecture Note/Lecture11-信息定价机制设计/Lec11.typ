@@ -230,4 +230,83 @@ Why useful?
 
 == II.Optimal Pricing of Information
 
+=== 1.Plans
+
+- Vignette 1: closed-form optimal mechanism for structed setups
+- Vignette 2: algorithmic solution for general setups
+- Vignette 3: from distilled data (i.e. information) to raw data
+
+=== 2.A Model of Information Pricing
+- One seller, one buyer
+- Buyers is a decision marker who faces a binary choice: an active action 1 and a passive action 0: Active action: come to talk, approve loan, invest stock X, etc.
+- Payoff of passive action $equiv$ 0
+- Payoff of active action$= v(omega, t)=v_1 (omega) [t + rho(omega)]$
+   - $omega$ is a state of nature, $t$ is buyer type
+   - Assume $v(omega,t)$ is linear and non-decreasing in $t in [t_1,t_2]$
+- Information structure:
+   - Seller observes $omega$, and buyer knows $t$
+
+*Mechanism design question*: How can seller optimally sell her information about $omega$ to the buyer?
+
+=== 3.Design Space
+
+Standard revelation principle implies optimal mechanism can w.l.o.g be a menu ${pi_t, p_t}_(t in T)$
+- $pi_t:Omega -> S$ is an experiment (which generates signals) for type $i$
+- $p_t in bb(R)$ is $t$'s payment
+- Each type is incentivized to report type truthfully
+
+*Concrete design question*: design IC ${pi_t,p_t}_(t in T)$ to maximize seller's revenue
+
+=== 4.How Does It Differ from Selling Goods?
+- Each experiment is like an item
+   - In this sense, we are selling infinitely many goods 
+   - In fact, we are even "designing the goods"
+- Participation constraint is different
+   - Without any information, type $t$'s utility is $max {overline(v)(t), 0}$
+$ overline(v)(t) = integral_(omega in Omega) v(omega, t) g(omega) d omega $
+$ "Ex-ante expected utility of action 1" $
+
+=== 5.Threshold experiments turn out to suffice
+$ "Recall " v(omega,t) = v_1 (omega)[t + rho(omega)] $
+*Def.* $pi_t$ is a threshold experiment if $pi_t$ simply reveals $rho(omega)>= theta(t)$ or not some buyer-type-dependent threshold $theta(t)$
+
+Threshold is on $rho(omega)$
+
+=== 6.Virtual Value Functions
+
+Recall virtual value function in [Myerson'81]: $phi (t) = t - (1 - F(t))/(f(t))$
+
+*Def.*
+- Lower virtual value function: $phi(t) = t - (1 - F(t))/(f(t))$
+- Upper virtual value function: $overline(phi)(t) = t + (F(t))/(f(t))$
+- Mixed virtual value function: $phi_c (t) = c underline(phi)(t) + (1-c)overline(phi)(t)$
+
+Note:"upper" or "lower" is due to:
+$ underline(phi)(t) <= t <= overline(phi)(t) $
+
+=== 7.The Optimal Mechanism
+
+Depend on two problem-related constants:
+$ V_L = max{v(t_1), 0} + integral_(t_1)^(t_2) integral_(q:rho(q)>= - underline(phi)^+ (x)) g(q) v_1 (q) d q d x $
+$ V_H = max{v(t_1), 0} + integral_(t_1)^(t_2) integral_(q:rho(q)>= - overline(phi)^+ (x)) g(q) v_1 (q) d q d x $
+Note:$ V_L < V_H $
+
+*Theorem([LSX'21])*
++ If $overline(v)(t_2) <= V_L$, the mechanism with threshold experiments $theta^ast (t) = - underline(phi)(t)$ and following payment function represents an optimal mechanism:   $ p^ast (t) = integral_(omega in Omega) pi^ast (omega, t) g(omega) v(omega,t) d omega - integral_(t_1)^(t) integral_(omega in Omega) pi^ast (omega,x) g(omega) v_1 (omega) d omega d x $
++ If $overline(v)(t_2) >= V_H$, the mechanism wit threshold experiments $theta^ast (t) = - overline(phi)(t)$ and following payment function represents an optimal mechanism:   $ p^ast (t) = integral_(omega in Omega) pi^ast (omega,t) g(omega) v(omega, t) d omega + integral_(t)^(t_2) integral_(omega in Omega) pi^ast (omega, x) g(omega) v_1 (omega) d omega d x - overline(v)(t_2) $
++ If $V_L <= overline(v)(t_2)<= V_H$, the mechanism with threshold experiments $theta^ast (t) = - phi_c (t)$ and following payment function represents an optimal mechanism  $ p^ast (t) = integral_(omega in Omega) pi^ast (omega, t) g(omega) v(omega, t) d omega - integral_(t_1)^(t_2) integral_(omega in Omega) pi^ast (omega, x)g(omega) v_1 (omega) d omega d x $ where constant $c$ is chosen such that $ integral_(t_1)^(t_2) integral_(omega: rho(omega)>= phi_c^+ (x)) g(omega) v_1 (omega) d omega d x = overline(v)(t_2) $
+
+=== 8.Remarks
+- Threshold mechanisms are common in real life:House/car inspections, stock recommendations: information seller only need to reveal it “passed” or “deserves a buy” or not
+- Optimal mechanism has personalized thresholds and payments, tailored to accommodate different level of risk each buyer type can take:Different from optimal pricing of physical goods
+
+What if seller is restricted to sell the same information to every buyer (e.g., due to regulation)? How will revenue change?
+- This is the optimal price (Merson reserve) in previous example
+- Revenue can be arbitrarily worse
+- $1/e$ - approximation of optimal revenue if the value of full information as a function of t has monotone hazard rate 
+
+=== 9.Additional Properties of Optimal Mechanism
+
+
+
 == III.Summary and Open Problems
