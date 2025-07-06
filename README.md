@@ -21,6 +21,15 @@
 │   ├── Lecture02-数据合规与安全/
 │   │   ... (and so on for all 10 lectures)
 ├── images/
+├── Final Exam/
+│   ├── Exam
+│   │   ├── exam.pdf
+│   │   ├── exam.typ   
+│   ├── Review
+│   │   ├── 名词解释.md
+│   │   ├── 名词解释.pdf
+│   │   ├── 三人合作商Shapley.md
+│   │   ├── 三人合作商Shapley.pdf
 └── README.md
 ```
 
@@ -32,6 +41,7 @@
 - [III. 课程实验 (Lab Assignments)](#iii-课程实验-lab-assignments)
 - [IV. 课程作业 (Homework Assignments)](#iv-课程作业-homework-assignments)
 - [V. 期末项目 (Final Project)](#v-期末项目-final-project)
+- [VI. 期末考试 (Final Exam)](#vi-期末考试-final-exam)
 
 ---
 
@@ -302,3 +312,5 @@ $$
 
 7.  **结论与展望**
     - 项目不仅给出了单买方单卖方场景下的最优机制设计方案，也为后续向多买方、多卖方、多信号的复杂场景扩展提供了可行的理论与算法框架。
+
+## VI. 期末考试 (Final Exam)
