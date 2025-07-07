@@ -40,7 +40,7 @@
 
 ## 📖 目录 (Table of Contents)
 - [I. 课程简介 (Introduction)](#i-课程简介-introduction)
-- [II. 课程讲义 (Lecture Notes)](#ii-课程讲义-lecture-notes)
+- [II. 课程笔记 (Lecture Notes)](#ii-课程笔记-lecture-notes)
 - [III. 课程实验 (Lab Assignments)](#iii-课程实验-lab-assignments)
 - [IV. 课程作业 (Homework Assignments)](#iv-课程作业-homework-assignments)
 - [V. 期末项目 (Final Project)](#v-期末项目-final-project)
