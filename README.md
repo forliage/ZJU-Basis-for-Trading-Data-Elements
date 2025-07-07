@@ -43,6 +43,7 @@
 - [IV. 课程作业 (Homework Assignments)](#iv-课程作业-homework-assignments)
 - [V. 期末项目 (Final Project)](#v-期末项目-final-project)
 - [VI. 期末考试 (Final Exam)](#vi-期末考试-final-exam)
+- [VII.写在最后 (Conclusion)](#vii-写在最后-conclusion)
 
 ---
 
@@ -328,3 +329,5 @@ $$
     - 项目不仅给出了单买方单卖方场景下的最优机制设计方案，也为后续向多买方、多卖方、多信号的复杂场景扩展提供了可行的理论与算法框架。
 
 ## VI. 期末考试 (Final Exam)
+
+## VII. 写在最后 (Conclusion)
